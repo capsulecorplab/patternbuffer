@@ -1,0 +1,14 @@
+# Pharo image, changes, and sources
+*.image
+*.changes
+*.sources
+
+# Pharo VM, wrappers, & cache folder
+pharo
+pharo-ui
+pharo-vm/
+pharo-local/
+
+# Metacello-github cache
+github-cache/
+github-*.zip
