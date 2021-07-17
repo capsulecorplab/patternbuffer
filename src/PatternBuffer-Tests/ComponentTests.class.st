@@ -75,8 +75,8 @@ ComponentTests >> testHasComponents [
 ComponentTests >> testHasDependencies [
 
 	| ncc1701A |
-	ncc1701A := Component new dependencies: (Dictionary newFrom: { 'constitutionclassrefit' -> '1.0.1' }).
-	self assert: (ncc1701A dependencies at: 'constitutionclassrefit') equals: '1.0.1'
+	ncc1701A := Component new dependencies: (Dictionary newFrom: { 'constitutionclassrefit' -> '1.1.0' }).
+	self assert: (ncc1701A dependencies at: 'constitutionclassrefit') equals: '1.1.0'
 ]
 
 { #category : #tests }
