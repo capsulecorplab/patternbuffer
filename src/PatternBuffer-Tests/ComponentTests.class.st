@@ -23,8 +23,8 @@ ComponentTests >> testHasALicense [
 { #category : #tests }
 ComponentTests >> testHasAName [
 	| ncc1701 |
-	ncc1701 := Component new name: 'USS Enterprise'.
-	self assert: ncc1701 name equals: 'USS Enterprise'
+	ncc1701 := Component new name: 'Constitution class starship'.
+	self assert: ncc1701 name equals: 'Constitution class starship'
 ]
 
 { #category : #tests }
