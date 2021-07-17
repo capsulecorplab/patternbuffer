@@ -44,10 +44,27 @@ Note: Evaluate by highlighting the text, then either right-click on the highligh
 
 ## Example Usage
 
-Once the `PatternBuffer` package has been loaded into your Pharo image, you can create a `Component` in a playground window:
+Once the `PatternBuffer` package has been loaded into your Pharo image, you can define a `Component` & `Interface` in a playground window:
 
 ```smalltalk
-ncc1701 := Component new
-    name: 'Constitution class starship';
-    description: 'Federation starship, designed for five-year missions in deep space'.
+warpcore := Component new
+	name: 'warp core';
+	description: 'powers propulsion system for a warp-capable starship';
+	ports: {(Port new name: 'warp core port')}.
+
+warpnacelle := Component new
+	name: 'warp nacelle';
+	description: 'propulsion system for a warp-capable starship';
+	ports: {(Port new name: 'warp nacelle port')}.
+
+warpconduit := Interface new
+	name: 'warp conduit';
+	description: 'transfers warp field energy from the warp core to warp nacelles';
+	data: 'warp field energy';
+	ports:
+		{(warpcore ports at: 1).
+		(warpnacelle ports at: 1)}.
+
+(warpconduit ports at: 1) name ">> warp core port"
+(warpconduit ports at: 2) name ">> warp nacelle port"
 ```
