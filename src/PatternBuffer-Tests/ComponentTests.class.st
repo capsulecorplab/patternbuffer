@@ -29,9 +29,9 @@ ComponentTests >> testHasAName [
 
 { #category : #tests }
 ComponentTests >> testHasAVersion [
-	| ncc1701 |
-	ncc1701 := Component new version: 'constitution-class'.
-	self assert: ncc1701 version equals: 'constitution-class'
+	| constitutionclassrefit |
+	constitutionclassrefit := Component new version: '1.1.0'.
+	self assert: constitutionclassrefit version equals: '1.1.0'
 ]
 
 { #category : #tests }
@@ -76,8 +76,8 @@ ComponentTests >> testHasDependencies [
 	"Author as per https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701)#Background_information"
 
 	| ncc1701A |
-	ncc1701A := Component new dependencies: (Dictionary newFrom: { 'refit' -> '1701-A' }).
-	self assert: (ncc1701A dependencies at: 'refit') equals: '1701-A'
+	ncc1701A := Component new dependencies: (Dictionary newFrom: { 'constitutionclassrefit' -> '1.0.1' }).
+	self assert: (ncc1701A dependencies at: 'constitutionclassrefit') equals: '1.0.1'
 ]
 
 { #category : #tests }
