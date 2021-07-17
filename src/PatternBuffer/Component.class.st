@@ -15,7 +15,8 @@ Class {
 		'parts',
 		'tools',
 		'precautions',
-		'assemblySteps'
+		'assemblySteps',
+		'ports'
 	],
 	#category : #'PatternBuffer-Base'
 }
@@ -98,6 +99,16 @@ Component >> parts [
 { #category : #accessing }
 Component >> parts: aPartsDict [
 	parts := aPartsDict
+]
+
+{ #category : #'as yet unclassified' }
+Component >> ports [
+	^ ports
+]
+
+{ #category : #'as yet unclassified' }
+Component >> ports: aDictionaryOf [
+	ports := aDictionaryOf
 ]
 
 { #category : #accessing }
