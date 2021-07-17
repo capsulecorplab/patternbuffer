@@ -73,7 +73,6 @@ ComponentTests >> testHasComponents [
 
 { #category : #tests }
 ComponentTests >> testHasDependencies [
-	"Author as per https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701)#Background_information"
 
 	| ncc1701A |
 	ncc1701A := Component new dependencies: (Dictionary newFrom: { 'constitutionclassrefit' -> '1.0.1' }).
