@@ -48,6 +48,5 @@ Once the `PatternBuffer` package has been loaded into your Pharo image, you can 
 
 ```smalltalk
 ncc1701 := Component new
-    name: 'Constitution class starship';
-    description: 'Federation starship, designed for five-year missions in deep space'.
+    name: 'constitution-class-starship'.
 ```
