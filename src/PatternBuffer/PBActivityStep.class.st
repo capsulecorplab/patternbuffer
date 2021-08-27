@@ -2,7 +2,7 @@
 Defines a single step in an activity, e.g. assembly instructions.
 "
 Class {
-	#name : #ActivityStep,
+	#name : #PBActivityStep,
 	#superclass : #Object,
 	#instVars : [
 		'summary',
@@ -14,41 +14,41 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-ActivityStep >> details [
+PBActivityStep >> details [
 	^ details
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> details: aDetailsString [ 
+PBActivityStep >> details: aDetailsString [ 
 	details := aDetailsString
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> requiredParts [
+PBActivityStep >> requiredParts [
 	^ requiredParts
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> requiredParts: aRequiredPartsList [
+PBActivityStep >> requiredParts: aRequiredPartsList [
 	requiredParts := aRequiredPartsList
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> requiredTools [
+PBActivityStep >> requiredTools [
 	^ requiredTools
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> requiredTools: aRequiredToolsList [
+PBActivityStep >> requiredTools: aRequiredToolsList [
 	requiredTools := aRequiredToolsList
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> summary [
+PBActivityStep >> summary [
 	^ summary
 ]
 
 { #category : #'as yet unclassified' }
-ActivityStep >> summary: aSummaryString [
+PBActivityStep >> summary: aSummaryString [
 	summary := aSummaryString
 ]

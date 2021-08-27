@@ -1,13 +1,13 @@
 Class {
-	#name : #ComponentsListItemTests,
+	#name : #PBComponentsListItemTests,
 	#superclass : #TestCase,
 	#category : #'PatternBuffer-Tests'
 }
 
 { #category : #tests }
-ComponentsListItemTests >> testHasDescription [
+PBComponentsListItemTests >> testHasDescription [
 	| replicator |
-	replicator := ComponentListItem new
+	replicator := PBComponentListItem new
 		description: 'mid 24th century replicator'.
 	self
 		assert: replicator description

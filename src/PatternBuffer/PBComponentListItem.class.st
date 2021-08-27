@@ -1,5 +1,5 @@
 Class {
-	#name : #ComponentListItem,
+	#name : #PBComponentListItem,
 	#superclass : #Object,
 	#instVars : [
 		'id',
@@ -16,11 +16,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-ComponentListItem >> description [
+PBComponentListItem >> description [
 	^ description
 ]
 
 { #category : #'as yet unclassified' }
-ComponentListItem >> description: aDescriptionString [ 
+PBComponentListItem >> description: aDescriptionString [ 
 	description := aDescriptionString
 ]

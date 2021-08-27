@@ -1,13 +1,13 @@
 Class {
-	#name : #ActivityStepTests,
+	#name : #PBActivityStepTests,
 	#superclass : #TestCase,
 	#category : #'PatternBuffer-Tests'
 }
 
 { #category : #tests }
-ActivityStepTests >> testHasDetails [
+PBActivityStepTests >> testHasDetails [
 	| replicatetea |
-	replicatetea := ActivityStep new
+	replicatetea := PBActivityStep new
 		details: 'request for `tea, earl grey, hot` from replicator'.
 	self
 		assert: replicatetea details
@@ -15,16 +15,16 @@ ActivityStepTests >> testHasDetails [
 ]
 
 { #category : #tests }
-ActivityStepTests >> testHasRequiredParts [
+PBActivityStepTests >> testHasRequiredParts [
 	| replicatetea |
-	replicatetea := ActivityStep new requiredParts: {'energy'}.
+	replicatetea := PBActivityStep new requiredParts: {'energy'}.
 	self assert: (replicatetea requiredParts at: 1) equals: 'energy'
 ]
 
 { #category : #tests }
-ActivityStepTests >> testHasRequiredTools [
+PBActivityStepTests >> testHasRequiredTools [
 	| replicatetea |
-	replicatetea := ActivityStep new
+	replicatetea := PBActivityStep new
 		requiredTools: {'24th century replicator'}.
 	self
 		assert: (replicatetea requiredTools at: 1)
@@ -32,9 +32,9 @@ ActivityStepTests >> testHasRequiredTools [
 ]
 
 { #category : #tests }
-ActivityStepTests >> testHasSummary [
+PBActivityStepTests >> testHasSummary [
 	| replicatetea |
-	replicatetea := ActivityStep new
+	replicatetea := PBActivityStep new
 		summary: 'request order from replicator'.
 	self
 		assert: replicatetea summary

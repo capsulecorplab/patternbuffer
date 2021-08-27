@@ -2,7 +2,7 @@
 Represents the smallest logical element in an OSHW project. A Component may be a project in its own right (with a sub-component hierarchy) or may be nested as a sub-component in the ""source"" of another component.
 "
 Class {
-	#name : #Component,
+	#name : #PBComponent,
 	#superclass : #Object,
 	#instVars : [
 		'name',
@@ -21,111 +21,111 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Component >> assemblyStep [
+PBComponent >> assemblyStep [
 	^ assemblySteps
 ]
 
 { #category : #'as yet unclassified' }
-Component >> assemblySteps: aListOfAssemblySteps [ 
+PBComponent >> assemblySteps: aListOfAssemblySteps [ 
 	assemblySteps := aListOfAssemblySteps
 ]
 
 { #category : #accessing }
-Component >> author [
+PBComponent >> author [
 	^ author
 ]
 
 { #category : #accessing }
-Component >> author: anAuthorString [
+PBComponent >> author: anAuthorString [
 	author := anAuthorString
 ]
 
 { #category : #accessing }
-Component >> components [
+PBComponent >> components [
 	^ components
 ]
 
 { #category : #accessing }
-Component >> components: componentsDict [
+PBComponent >> components: componentsDict [
 	components := componentsDict
 ]
 
 { #category : #accessing }
-Component >> dependencies [
+PBComponent >> dependencies [
 	^ dependencies
 ]
 
 { #category : #accessing }
-Component >> dependencies: dependenciesDict [
+PBComponent >> dependencies: dependenciesDict [
 	dependencies := dependenciesDict
 ]
 
 { #category : #accessing }
-Component >> description [
+PBComponent >> description [
 	^ description
 ]
 
 { #category : #accessing }
-Component >> description: aDescriptionString [
+PBComponent >> description: aDescriptionString [
 	description := aDescriptionString
 ]
 
 { #category : #accessing }
-Component >> license [
+PBComponent >> license [
 	^ license
 ]
 
 { #category : #accessing }
-Component >> license: aLicenseString [
+PBComponent >> license: aLicenseString [
 	license := aLicenseString
 ]
 
 { #category : #accessing }
-Component >> name [
+PBComponent >> name [
 	^ name
 ]
 
 { #category : #accessing }
-Component >> name: aNameString [
+PBComponent >> name: aNameString [
 	name := aNameString
 ]
 
 { #category : #accessing }
-Component >> parts [
+PBComponent >> parts [
 	^ parts
 ]
 
 { #category : #accessing }
-Component >> parts: aPartsDict [
+PBComponent >> parts: aPartsDict [
 	parts := aPartsDict
 ]
 
 { #category : #accessing }
-Component >> precautions [
+PBComponent >> precautions [
 	^ precautions
 ]
 
 { #category : #accessing }
-Component >> precautions: aPrecautionsList [
+PBComponent >> precautions: aPrecautionsList [
 	precautions := aPrecautionsList
 ]
 
 { #category : #accessing }
-Component >> tools [
+PBComponent >> tools [
 	^ tools
 ]
 
 { #category : #accessing }
-Component >> tools: aToolsDict [
+PBComponent >> tools: aToolsDict [
 	tools := aToolsDict
 ]
 
 { #category : #accessing }
-Component >> version [
+PBComponent >> version [
 	^ version
 ]
 
 { #category : #accessing }
-Component >> version: aVersionString [
+PBComponent >> version: aVersionString [
 	version := aVersionString
 ]

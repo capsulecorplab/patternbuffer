@@ -1,55 +1,55 @@
 Class {
-	#name : #ComponentTests,
+	#name : #PBComponentTests,
 	#superclass : #TestCase,
 	#category : #'PatternBuffer-Tests'
 }
 
 { #category : #tests }
-ComponentTests >> testHasADescription [
+PBComponentTests >> testHasADescription [
 	| ncc1701 |
-	ncc1701 := Component new description: 'Federation starship, designed for five-year missions in deep space'.
+	ncc1701 := PBComponent new description: 'Federation starship, designed for five-year missions in deep space'.
 	self assert: ncc1701 description equals: 'Federation starship, designed for five-year missions in deep space'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasALicense [
+PBComponentTests >> testHasALicense [
 	"License as per https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701)"
 
 	| ncc1701 |
-	ncc1701 := Component new license: 'CC-BY-NC'.
+	ncc1701 := PBComponent new license: 'CC-BY-NC'.
 	self assert: ncc1701 license equals: 'CC-BY-NC'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasAName [
+PBComponentTests >> testHasAName [
 	| ncc1701 |
-	ncc1701 := Component new name: 'Constitution class starship'.
+	ncc1701 := PBComponent new name: 'Constitution class starship'.
 	self assert: ncc1701 name equals: 'Constitution class starship'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasAVersion [
+PBComponentTests >> testHasAVersion [
 	| constitutionclassrefit |
-	constitutionclassrefit := Component new version: '1.1.0'.
+	constitutionclassrefit := PBComponent new version: '1.1.0'.
 	self assert: constitutionclassrefit version equals: '1.1.0'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasAnAuthor [
+PBComponentTests >> testHasAnAuthor [
 	"Author as per https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701)#Background_information"
 
 	| ncc1701 |
-	ncc1701 := Component new author: 'Matt Jefferies'.
+	ncc1701 := PBComponent new author: 'Matt Jefferies'.
 	self assert: ncc1701 author equals: 'Matt Jefferies'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasAssemblySteps [
+PBComponentTests >> testHasAssemblySteps [
 	| hotearlgreytea |
-	hotearlgreytea := Component new
+	hotearlgreytea := PBComponent new
 		name: 'hot earl grey tea';
 		assemblySteps:
-			{(ActivityStep new
+			{(PBActivityStep new
 				summary: 'request order from replicator';
 				requiredParts: {'energy'};
 				requiredTools: '24th century replicator';
@@ -60,44 +60,44 @@ ComponentTests >> testHasAssemblySteps [
 ]
 
 { #category : #tests }
-ComponentTests >> testHasComponents [
+PBComponentTests >> testHasComponents [
 	| ncc1701 |
-	ncc1701 := Component new
+	ncc1701 := PBComponent new
 		components:
 			(Dictionary
-				newFrom: {('warp nacelle' -> (Component new name: 'warp nacelle'))}).
+				newFrom: {('warp nacelle' -> (PBComponent new name: 'warp nacelle'))}).
 	self
 		assert: (ncc1701 components at: 'warp nacelle') name
 		equals: 'warp nacelle'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasDependencies [
+PBComponentTests >> testHasDependencies [
 
 	| ncc1701A |
-	ncc1701A := Component new dependencies: (Dictionary newFrom: { 'constitutionclassrefit' -> '1.1.0' }).
+	ncc1701A := PBComponent new dependencies: (Dictionary newFrom: { 'constitutionclassrefit' -> '1.1.0' }).
 	self assert: (ncc1701A dependencies at: 'constitutionclassrefit') equals: '1.1.0'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasParts [
+PBComponentTests >> testHasParts [
 	| starship |
-	starship := Component new
+	starship := PBComponent new
 		name: 'J-type 327 Nubian starship';
 		components:
 			(Dictionary
 				newFrom:
 					{('hyperdrive'
-						-> (ComponentListItem new description: 'T-14 hyperdrive generator'))}).
+						-> (PBComponentListItem new description: 'T-14 hyperdrive generator'))}).
 	self
 		assert: (starship components at: 'hyperdrive') description
 		equals: 'T-14 hyperdrive generator'
 ]
 
 { #category : #tests }
-ComponentTests >> testHasPrecautions [
+PBComponentTests >> testHasPrecautions [
 	| hotearlgreytea |
-	hotearlgreytea := Component new
+	hotearlgreytea := PBComponent new
 		name: 'tea, earl grey, hot';
 		precautions: {'Warning: Tea is hot'}.
 	self
@@ -106,15 +106,15 @@ ComponentTests >> testHasPrecautions [
 ]
 
 { #category : #tests }
-ComponentTests >> testHasTools [
+PBComponentTests >> testHasTools [
 	| hotearlgreytea |
-	hotearlgreytea := Component new
+	hotearlgreytea := PBComponent new
 		name: 'tea, earl grey, hot';
 		tools:
 			(Dictionary
 				newFrom:
 					{('replicator'
-						-> (ComponentListItem new description: 'mid 24th century replicator'))}).
+						-> (PBComponentListItem new description: 'mid 24th century replicator'))}).
 	self
 		assert: (hotearlgreytea tools at: 'replicator') description
 		equals: 'mid 24th century replicator'
