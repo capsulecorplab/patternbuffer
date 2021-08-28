@@ -29,7 +29,7 @@ Download the 64-bit Pharo image + VM into the `PatternBuffer` directory and star
 
 ```shell
 curl get.pharo.org/64/stable+vm | bash
-./pharo-ui
+./pharo-ui Pharo.image
 ```
 
 In the Pharo-UI, open a playground window (`Ctrl+O+W`) and evaluate:
