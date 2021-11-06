@@ -5,6 +5,50 @@ Class {
 }
 
 { #category : #tests }
+PBComponentTests >> testComponentAsInterconnectionDiagram [
+
+	"comment stating purpose of instance-side method"
+
+	"scope: class-variables  &  instance-variables"
+
+	| warpplasma starboardwarpNacelleInterface starboardwarpConduitInterface starboardwarpnacelle starboardwarpconduit warpcore starboardwarpCoreInterface warpdrivesystem |
+	warpcore := PBComponent new name: 'warp-core'.
+	starboardwarpconduit := PBComponent new name: 'warp-conduit'.
+	starboardwarpnacelle := PBComponent new name: 'warp-nacelle'.
+
+	warpplasma := PBComponent new name: 'warp-plasma'.
+
+	starboardwarpCoreInterface := PBInterface new ends: { (PBPort new
+			                               out: warpplasma;
+			                               attribute: 'energy') }.
+
+	starboardwarpConduitInterface := PBInterface new ends: { 
+			                                 (PBPort new
+				                                  in: warpplasma;
+				                                  attribute: 'energy').
+			                                 (PBPort new
+				                                  out: warpplasma;
+				                                  attribute: 'energy') }.
+
+	starboardwarpNacelleInterface := PBInterface new ends: { (PBPort new
+			                                  in: warpplasma;
+			                                  attribute: 'energy') }.
+
+	warpdrivesystem := PBComponent new
+		                   components: { 
+				                   starboardwarpnacelle.
+				                   starboardwarpconduit.
+				                   warpcore };
+		                   interfaceConnections: { 
+				                   { 
+					                   (starboardwarpNacelleInterface ends at: 1).
+					                   (starboardwarpConduitInterface ends at: 2) }.
+				                   { 
+					                   (starboardwarpConduitInterface ends at: 1).
+					                   (starboardwarpCoreInterface ends at: 1) } }
+]
+
+{ #category : #tests }
 PBComponentTests >> testHasADescription [
 	| ncc1701 |
 	ncc1701 := PBComponent new description: 'Federation starship, designed for five-year missions in deep space'.

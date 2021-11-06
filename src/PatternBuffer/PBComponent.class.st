@@ -15,7 +15,8 @@ Class {
 		'parts',
 		'tools',
 		'precautions',
-		'assemblySteps'
+		'assemblySteps',
+		'interfaceConnections'
 	],
 	#category : #'PatternBuffer-Base'
 }
@@ -68,6 +69,12 @@ PBComponent >> description [
 { #category : #accessing }
 PBComponent >> description: aDescriptionString [
 	description := aDescriptionString
+]
+
+{ #category : #'as yet unclassified' }
+PBComponent >> interfaceConnections: anInterfaceConnectionsList [
+
+	interfaceConnections := anInterfaceConnectionsList 
 ]
 
 { #category : #accessing }
