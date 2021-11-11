@@ -72,6 +72,12 @@ PBComponent >> description: aDescriptionString [
 ]
 
 { #category : #'as yet unclassified' }
+PBComponent >> interfaceConnections [
+
+	^ interfaceConnections
+]
+
+{ #category : #'as yet unclassified' }
 PBComponent >> interfaceConnections: anInterfaceConnectionsList [
 
 	interfaceConnections := anInterfaceConnectionsList 
