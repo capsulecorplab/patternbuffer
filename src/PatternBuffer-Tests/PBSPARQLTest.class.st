@@ -7,9 +7,10 @@ Class {
 	#category : #'PatternBuffer-Tests'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 PBSPARQLTest >> setUp [
 
+	super setUp.
 	sparqlClient := PBSPARQL new
 ]
 
