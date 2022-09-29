@@ -14,6 +14,14 @@ Metacello new baseline: 'PatternBuffer';
     load.
 ```
 
+To load the latest tagged release, open a playground window (`Ctrl+O+W`) and evaluate:
+
+```smalltalk
+Metacello new baseline: 'PatternBuffer';
+    repository: 'github://capsulecorplab/patternbuffer:v0.2.0-pre-release';
+    load.
+```
+
 Note: Evaluate by highlighting the text, then either right-click on the highlighted text and click `Do it` or press `Ctrl+D`.
 
 ### Starting from the shell
