@@ -17,13 +17,23 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'endpoint',
-		'queryStream'
+		'queryStream',
+		'result'
 	],
 	#category : #PatternBuffer
 }
 
+{ #category : #'as yet unclassified' }
+PBSPARQL >> appendUrlEncodedSPARQLStringToQueryStream: aUrlEncodedSPARQLString [
+
+	queryStream
+		nextPutAll: '?query=';
+		nextPutAll: aUrlEncodedSPARQLString
+]
+
 { #category : #accessing }
 PBSPARQL >> endpoint [
+
 	^ endpoint
 ]
 
@@ -47,17 +57,20 @@ PBSPARQL >> query [
 
 	" Answer a SPARQL <String> representing the current query "
 
-	^ self queryStream contents
+	^ queryStream contents
 ]
 
 { #category : #accessing }
 PBSPARQL >> query: aSPARQLString [
 
-	" Append aSPARQLString to the receiver's query stream "
+	"Append aSPARQLString to the receiver's query stream, execute query, and cache results"
 
-	self queryStream
-		nextPutAll: '?query=';
-		nextPutAll: aSPARQLString urlEncoded
+	self appendUrlEncodedSPARQLStringToQueryStream:
+		aSPARQLString urlEncoded.
+
+	result := (ZnEasy get:
+		           self endpoint contents , self queryStream contents
+		           , '&format=json&output=json&results=json') contents
 ]
 
 { #category : #accessing }
@@ -72,13 +85,24 @@ PBSPARQL >> queryStream: anObject [
 	queryStream := anObject
 ]
 
+{ #category : #accessing }
+PBSPARQL >> result [
+
+	^ result
+]
+
+{ #category : #accessing }
+PBSPARQL >> result: aString [
+
+	result := aString
+]
+
 { #category : #'as yet unclassified' }
 PBSPARQL >> resultAsJSON [
 
-	"Executes and returns query as JSON"
+	"returns query as JSON"
 
-	^ (ZnEasy get: self endpoint contents , self queryStream contents
-		   , '&format=json&output=json&results=json') contents
+	^ result
 ]
 
 { #category : #'as yet unclassified' }
