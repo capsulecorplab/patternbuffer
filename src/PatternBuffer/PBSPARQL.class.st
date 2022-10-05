@@ -110,20 +110,22 @@ PBSPARQL >> resultAsTable [
 
 	"Executes and returns query as Array2D object"
 
-	| resultAsJSON |
-	resultAsJSON := self resultAsJSON.
-	^ Array2D
-		  rows:
-			  (((NeoJSONReader fromString: resultAsJSON) at: #results) at:
-				   #bindings) size
-		  columns:
-		  (((NeoJSONReader fromString: resultAsJSON) at: #head) at: #vars)
-			  size
-		  tabulate: [ :row :column | 
-			  ((((NeoJSONReader fromString: resultAsJSON) at: #results) at:
-				    #bindings) at: row)
-				  at:
-					  ((((NeoJSONReader fromString: resultAsJSON) at: #head) at:
-						    #vars) at: column)
-				  at: #value ]
+	| resultAsJSON parsedJSON bindings bindgingsListItem rowSize colSize formattedValue |
+	resultAsJSON := self result contents.
+	parsedJSON := NeoJSONReader fromString: resultAsJSON.
+	bindings := (parsedJSON at: #results) at: #bindings.
+	bindgingsListItem := (parsedJSON at: #head) at: #vars.
+	rowSize := bindings size.
+	colSize := bindgingsListItem size.
+	formattedValue := [ :input | 
+	                  [ (input asString splitOn: '#') at: 2 ]
+		                  on: Error
+		                  do: [ input asString ] ].
+
+	^ Array2D rows: rowSize columns: colSize tabulate: [ :row :column | 
+		  | value index |
+		  value := bindings at: row.
+		  formattedValue value: value.
+		  index := bindgingsListItem at: column.
+		  formattedValue value: (value at: index at: #value) ]
 ]
