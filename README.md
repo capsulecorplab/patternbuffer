@@ -14,13 +14,15 @@ Metacello new baseline: 'PatternBuffer';
     load.
 ```
 
-To load the latest tagged release, open a playground window (`Ctrl+O+W`) and evaluate:
+To load a tagged release, open a playground window (`Ctrl+O+W`) and evaluate:
 
 ```smalltalk
 Metacello new baseline: 'PatternBuffer';
-    repository: 'github://capsulecorplab/patternbuffer:v0.2.0-pre-release';
+    repository: 'github://capsulecorplab/patternbuffer:v0.2.0';
     load.
 ```
+
+where `v0.2.0` is the tag name corresponding to a release.
 
 Note: Evaluate by highlighting the text, then either right-click on the highlighted text and click `Do it` or press `Ctrl+D`.
 
@@ -53,10 +55,10 @@ Note: Evaluate by highlighting the text, then either right-click on the highligh
 ## Example Usage
 
 Once the `PatternBuffer` package has been loaded into your Pharo image, you can run a query against a SPARQL endpoint.
-For example, the following returns a JSON object of assemblies & subassemblies from the [firesat](https://github.com/opencaesar/firesat-example) database running on a local server:
+For example, the following executes a query for assemblies & subassemblies from the [firesat](https://github.com/opencaesar/firesat-example) database running on a local server:
 
 ```smalltalk
-PBSPARQL new
+firesatClient := PBSPARQL new
     endpoint: 'http://localhost:3030/firesat/sparql';
     query: 'PREFIX fse:   <http://opencaesar.io/examples/firesat/disciplines/fse/fse#>
 PREFIX base:   <http://imce.jpl.nasa.gov/foundation/base#>
@@ -65,6 +67,18 @@ SELECT ?assembly ?subassembly
 
 WHERE {
 	?assembly base:contains ?subassembly
-}'; resultAsJSON.
+}'.
+```
+
+Results of the SPARQL query can be viewed as a JSON object,
+
+```smalltalk
+firesatClient resultAsJSON.
+```
+
+or as a table,
+
+```smalltalk
+firesatClient resultAsTable.
 ```
 
