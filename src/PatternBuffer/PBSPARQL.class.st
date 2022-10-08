@@ -34,6 +34,14 @@ PBSPARQL >> appendUrlEncodedSPARQLStringToQueryStream: aUrlEncodedSPARQLString [
 		nextPutAll: aUrlEncodedSPARQLString
 ]
 
+{ #category : #'as yet unclassified' }
+PBSPARQL >> datastore: aStringOrFileReference [
+
+	"Loads RDF data from a file path, s.a. a .ttl or (TODO) .n3 file, to be used for directly executing SPARQL queries against."
+
+	datastore := aStringOrFileReference
+]
+
 { #category : #accessing }
 PBSPARQL >> endpoint [
 
