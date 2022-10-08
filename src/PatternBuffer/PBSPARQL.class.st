@@ -74,14 +74,19 @@ PBSPARQL >> query [
 { #category : #accessing }
 PBSPARQL >> query: aSPARQLString [
 
-	"Append aSPARQLString to the receiver's query stream, execute query, and cache results"
+	"Executes a SPARQL query directly against a local RDF datastore.
+	Otherwise, performs query against an endpoint"
 
-	self appendUrlEncodedSPARQLStringToQueryStream:
-		aSPARQLString urlEncoded.
+	datastore isNotNil
+		ifTrue: [ 
+		result := PBRDFLib new datastore: datastore query: aSPARQLString ]
+		ifFalse: [ 
+			self appendUrlEncodedSPARQLStringToQueryStream:
+				aSPARQLString urlEncoded.
 
-	result := (ZnEasy get:
-		           self endpoint contents , self queryStream contents
-		           , '&format=json&output=json&results=json') contents
+			result := (ZnEasy get:
+				           self endpoint contents , self queryStream contents
+				           , '&format=json&output=json&results=json') contents ]
 ]
 
 { #category : #accessing }
