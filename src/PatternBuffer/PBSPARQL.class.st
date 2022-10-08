@@ -18,13 +18,16 @@ Class {
 	#instVars : [
 		'endpoint',
 		'queryStream',
-		'result'
+		'result',
+		'datastore'
 	],
 	#category : #PatternBuffer
 }
 
 { #category : #'as yet unclassified' }
 PBSPARQL >> appendUrlEncodedSPARQLStringToQueryStream: aUrlEncodedSPARQLString [
+
+	"Append aSPARQLString to the receiver's query stream, execute query, and cache results"
 
 	queryStream
 		nextPutAll: '?query=';
