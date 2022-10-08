@@ -18,11 +18,11 @@ To load a tagged release, open a playground window (`Ctrl+O+W`) and evaluate:
 
 ```smalltalk
 Metacello new baseline: 'PatternBuffer';
-    repository: 'github://capsulecorplab/patternbuffer:v0.2.0';
+    repository: 'github://capsulecorplab/patternbuffer:v0.3.0-release-candidate';
     load.
 ```
 
-where `v0.2.0` is the tag name corresponding to a release.
+where `v0.3.0-release-candidate` is the tag name corresponding to a release.
 
 Note: Evaluate by highlighting the text, then either right-click on the highlighted text and click `Do it` or press `Ctrl+D`.
 
