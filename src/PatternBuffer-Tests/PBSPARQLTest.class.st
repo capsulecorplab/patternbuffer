@@ -309,10 +309,7 @@ PBSPARQLTest >> resultAsJSONString [
 PBSPARQLTest >> setUp [
 
 	super setUp.
-	sparqlClient := PBSPARQL new.
-	sparqlClient endpoint: 'http://localhost:3030/database/sparql'.
-	sparqlClient appendUrlEncodedSPARQLStringToQueryStream:
-		self sparqlString urlEncoded
+	sparqlClient := PBSPARQL new
 ]
 
 { #category : #accessing }
@@ -327,6 +324,9 @@ WHERE {
 { #category : #tests }
 PBSPARQLTest >> testEndpoint [
 
+	sparqlClient endpoint: 'http://localhost:3030/database/sparql'.
+	sparqlClient appendUrlEncodedSPARQLStringToQueryStream:
+		self sparqlString urlEncoded.
 	self assert: (sparqlClient endpoint isKindOf: String).
 	self assert: sparqlClient endpoint notEmpty.
 	self assert: (sparqlClient endpoint beginsWith: 'http:')
@@ -345,4 +345,37 @@ PBSPARQLTest >> testQuery [
 PBSPARQLTest >> testQueryStream [
 
 	self assert: (sparqlClient queryStream isKindOf: Stream)
+]
+
+{ #category : #tests }
+PBSPARQLTest >> testResultAsJSON [
+
+	"Parse result as json, then check shape of rows and columns used to generate table"
+
+	| resultAsJSON parsedJSON bindings bindgingsListItem rowSize colSize formattedValue |
+	resultAsJSON := self resultAsJSONString contents.
+	parsedJSON := NeoJSONReader fromString: resultAsJSON.
+	bindings := (parsedJSON at: #results) at: #bindings.
+	bindgingsListItem := (parsedJSON at: #head) at: #vars.
+	rowSize := bindings size.
+	colSize := bindgingsListItem size.
+	formattedValue := [ :input | 
+	                  [ (input asString splitOn: '#') at: 2 ]
+		                  on: Error
+		                  do: [ input asString ] ].
+	self assert: rowSize equals: 71.
+	self assert: colSize equals: 2
+]
+
+{ #category : #tests }
+PBSPARQLTest >> testResultAsTableHasColumnNames [
+
+	"Test result as table contains column names"
+
+	| resultAsTable |
+	sparqlClient result: self resultAsJSONString.
+	resultAsTable := sparqlClient resultAsTable.
+
+	self assert: (resultAsTable columnNames at: 1) equals: 'assembly'.
+	self assert: (resultAsTable columnNames at: 2) equals: 'subassembly'
 ]

@@ -1,7 +1,7 @@
-Extension { #name : #Array2D }
+Extension { #name : #PBArray2D }
 
 { #category : #'*PatternBuffer' }
-Array2D >> inspectorExtension [
+PBArray2D >> inspectorExtension [
 
 	<inspectorPresentationOrder: 0 title: 'Matrix'>
 	| specTable |
@@ -13,7 +13,7 @@ Array2D >> inspectorExtension [
 
 	1 to: numberOfColumns do: [ :index | 
 		specTable addColumn: (SpStringTableColumn new
-				 title: index asString;
+				 title: (self columnNames at: index);
 				 evaluated: [ :each | each at: index ];
 				 beNotExpandable) ].
 
