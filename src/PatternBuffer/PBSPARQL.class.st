@@ -19,7 +19,8 @@ Class {
 		'endpoint',
 		'queryStream',
 		'result',
-		'datastore'
+		'datastore',
+		'data'
 	],
 	#category : #PatternBuffer
 }
@@ -37,8 +38,9 @@ PBSPARQL >> appendUrlEncodedSPARQLStringToQueryStream: aUrlEncodedSPARQLString [
 { #category : #'as yet unclassified' }
 PBSPARQL >> datastore: aStringOrFileReference [
 
-	"Loads RDF data from a file path, s.a. a .ttl or (TODO) .n3 file, to be used for directly executing SPARQL queries against."
+	"Sets path to and stores contents of RDF data from a file path to an RDF datastore, s.a. a .ttl or (TODO) .n3 file, to be used for directly executing SPARQL queries against."
 
+	data := datastore asFileReference contents.
 	datastore := aStringOrFileReference
 ]
 
