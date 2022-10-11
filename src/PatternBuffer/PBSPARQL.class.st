@@ -40,7 +40,7 @@ PBSPARQL >> datastore: aStringOrFileReference [
 
 	"Sets path to and stores contents of RDF data from a file path to an RDF datastore, s.a. a .ttl or (TODO) .n3 file, to be used for directly executing SPARQL queries against."
 
-	data := datastore asFileReference contents.
+	data := aStringOrFileReference asFileReference contents.
 	datastore := aStringOrFileReference
 ]
 
