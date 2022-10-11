@@ -4,40 +4,12 @@ PatternBuffer is a Pharo/Smalltalk client for querying RDF databases.
 
 ## Loading instructions
 
-### Starting from a Pharo image
-
 To load the latest release, open a playground window (`Ctrl+O+W`) and evaluate:
 
 ```smalltalk
 Metacello new baseline: 'PatternBuffer';
     repository: 'github://capsulecorplab/patternbuffer:v0.3.0';
     load.
-```
-
-Note: Evaluate by highlighting the text, then either right-click on the highlighted text and click `Do it` or press `Ctrl+D`.
-
-### Starting from the shell
-
-Clone the repo:
-
-```shell
-git clone https://github.com/capsulecorplab/patternbuffer.git
-cd patternbuffer
-```
-
-Download the 64-bit Pharo image + VM into the `patternbuffer` directory and start the Pharo-UI:
-
-```shell
-curl get.pharo.org/64/stable+vm | bash
-./pharo-ui Pharo.image
-```
-
-In the Pharo-UI, open a playground window (`Ctrl+O+W`) and evaluate:
-
-```smalltalk
-Metacello new baseline: 'PatternBuffer';
-   repository: 'gitlocal://./src';
-   load.
 ```
 
 Note: Evaluate by highlighting the text, then either right-click on the highlighted text and click `Do it` or press `Ctrl+D`.
