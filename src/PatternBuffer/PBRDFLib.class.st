@@ -16,7 +16,7 @@ Class {
 	#name : #PBRDFLib,
 	#superclass : #Object,
 	#instVars : [
-		'rdflibPythonScript'
+		'pythonScript'
 	],
 	#category : #PatternBuffer
 }
@@ -26,21 +26,18 @@ PBRDFLib >> datastore: aStringOrFileReference query: aString [
 
 	"Executes a SPARQL directly against an RDF datastore using the RDFLib Python package"
 
-	rdflibPythonScript := 'from rdflib import Graph; datastore = """{1}"""; query = """{2}"""; g = Graph(); g.parse(datastore, format="turtle"); results = g.query(query); result_as_byte_string = results.serialize(format="json"); result_as_json = str(result_as_byte_string, "utf-8"); print(result_as_json)' 
-		                      format: { 
-				                      aStringOrFileReference asString.
-				                      (' ' join:
-					                       (aString findTokens: String cr , String lf)) }.
+	pythonScript := 'from rdflib import Graph; datastore = """{1}"""; query = """{2}"""; g = Graph(); g.parse(datastore, format="turtle"); results = g.query(query); result_as_byte_string = results.serialize(format="json"); result_as_json = str(result_as_byte_string, "utf-8"); print(result_as_json)' 
+		                format: { 
+				                aStringOrFileReference asString.
+				                (' ' join:
+					                 (aString findTokens: String cr , String lf)) }.
 
 
-	^ SICommand waitForCommand: 'printf' arguments: { 
-			  ($' asString , rdflibPythonScript , $' asString).
-			  '|'.
-			  'python' }
+	^ PBPython new fromString: pythonScript
 ]
 
 { #category : #accessing }
-PBRDFLib >> rdflibPythonScript [
+PBRDFLib >> pythonScript [
 
-	^ rdflibPythonScript
+	^ pythonScript
 ]
