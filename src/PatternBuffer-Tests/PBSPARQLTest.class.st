@@ -333,15 +333,6 @@ PBSPARQLTest >> testEndpoint [
 ]
 
 { #category : #tests }
-PBSPARQLTest >> testQuery [
-
-	"TODO: needs to be revised or replaced by test that runs query directly against ttl"
-
-	self assert: (sparqlClient queryStream contents includesSubstring:
-			 self sparqlString urlEncoded)
-]
-
-{ #category : #tests }
 PBSPARQLTest >> testQueryStream [
 
 	self assert: (sparqlClient queryStream isKindOf: Stream)
