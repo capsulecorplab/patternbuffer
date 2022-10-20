@@ -148,6 +148,8 @@ PBSPARQL >> resultAsTable [
 			  value := bindings at: row.
 			  formattedValue value: value.
 			  index := vars at: column.
-			  formattedValue value: (value at: index at: #value) ]
+			  formattedValue value: ([ value at: index at: #value ]
+					   on: KeyNotFound
+					   do: [ '' ]) ]
 		  columnNames: vars
 ]
