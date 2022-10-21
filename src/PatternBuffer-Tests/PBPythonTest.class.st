@@ -5,9 +5,23 @@ Class {
 }
 
 { #category : #tests }
+PBPythonTest >> testFromArrayOfStrings [
+
+	"tests Hello, world! example from an array of strings"
+
+	| pythonScriptAsArrayOfStrings pythonClient stdout |
+	pythonScriptAsArrayOfStrings := { 'string = "Hello, world!"'.
+	                                'print(string)' }.
+	pythonClient := PBPython new.
+	stdout := pythonClient fromArrayOfStrings:
+		          pythonScriptAsArrayOfStrings.
+	self assert: stdout equals: 'Hello, world!' , Character lf asString
+]
+
+{ #category : #tests }
 PBPythonTest >> testFromString [
 
-	"tests Hello, world! example"
+	"tests Hello, world! example from a string"
 
 	| pythonScript pythonClient stdout |
 	pythonScript := 'print("Hello, world!")'.
