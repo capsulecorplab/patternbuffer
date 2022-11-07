@@ -359,13 +359,15 @@ PBSPARQLTest >> testResultAsJSON [
 ]
 
 { #category : #tests }
-PBSPARQLTest >> testResultAsTableHasColumnNames [
+PBSPARQLTest >> testResultAsTable [
 
 	"Test result as table contains column names"
 
 	| resultAsTable |
 	sparqlClient result: self resultAsJSONString.
 	resultAsTable := sparqlClient resultAsTable.
+
+	"check column names correspond to variable headers from SPARQL query"
 
 	self assert: (resultAsTable columnNames at: 1) equals: 'assembly'.
 	self assert: (resultAsTable columnNames at: 2) equals: 'subassembly'
