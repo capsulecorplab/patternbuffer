@@ -359,7 +359,7 @@ PBSPARQLTest >> testResultAsJSON [
 ]
 
 { #category : #tests }
-PBSPARQLTest >> testResultAsTableHasColumnNames [
+PBSPARQLTest >> testResultAsTable [
 
 	"Test result as table contains column names"
 
