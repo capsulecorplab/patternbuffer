@@ -15,7 +15,7 @@ To load the latest release, open a playground window (`Ctrl+O+W`) and evaluate:
 
 ```smalltalk
 Metacello new baseline: 'PatternBuffer';
-    repository: 'github://capsulecorplab/patternbuffer:v0.4.1';
+    repository: 'github://capsulecorplab/patternbuffer:v0.5.0';
     load.
 ```
 
