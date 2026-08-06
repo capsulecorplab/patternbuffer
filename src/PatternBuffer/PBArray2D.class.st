@@ -25,9 +25,11 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #PBArray2D,
-	#superclass : #Array2D,
+	#superclass : #CTArray2D,
 	#instVars : [
-		'columnNames'
+		'columnNames',
+		'numberOfColumns',
+		'numberOfRows'
 	],
 	#category : #PatternBuffer
 }
