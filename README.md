@@ -1,6 +1,6 @@
 # PatternBuffer
 
-PatternBuffer is a Pharo/Smalltalk client for querying RDF databases.
+A Pharo/Smalltalk library for interacting with linked data models via contextual views.
 
 ## Requirements
 
