@@ -23,6 +23,8 @@ NOTE: Evaluate by highlighting the code, then either right-click on the highligh
 
 ## Example Usage
 
+NOTE: The following example is being marked as deprecated as RDF support will not be the focus of this library moving forward and thus may no longer work in future releases.
+
 Once the `PatternBuffer` package has been loaded into your Pharo image, you can run a SPARQL query against an RDF datastore.
 
 For example, evaluate and inspect the following in a playground window (`Ctrl+O+W`) to execute a query for assemblies & subassemblies against a TTL file downloaded from the [firesat](https://github.com/opencaesar/firesat-example) database:
