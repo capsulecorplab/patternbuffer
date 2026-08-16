@@ -264,19 +264,18 @@ PBSPARQL >> resultAsJSON [
 	^ result
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - query' }
 PBSPARQL >> resultAsTable [
-
 	"Executes and returns query as Array2D object"
 
 	| resultAsJSON parsedJSON bindings vars rowSize colSize formattedValue |
 	resultAsJSON := self result contents.
-	parsedJSON := NeoJSONReader fromString: resultAsJSON.
+	parsedJSON := STONJSON fromString: resultAsJSON.
 	bindings := (parsedJSON at: #results) at: #bindings.
 	vars := (parsedJSON at: #head) at: #vars.
 	rowSize := bindings size.
 	colSize := vars size.
-	formattedValue := [ :input | 
+	formattedValue := [ :input |
 	                  [ (input asString splitOn: '#') at: 2 ]
 		                  on: Error
 		                  do: [ input asString ] ].
@@ -284,7 +283,7 @@ PBSPARQL >> resultAsTable [
 	^ PBArray2D new
 		  rows: rowSize
 		  columns: colSize
-		  tabulate: [ :row :column | 
+		  tabulate: [ :row :column |
 			  | value index |
 			  value := bindings at: row.
 			  formattedValue value: value.

@@ -8338,17 +8338,16 @@ PBSPARQLTest >> testQueryStream [
 
 { #category : #tests }
 PBSPARQLTest >> testResultAsJSON [
-
 	"Parse result as json, then check shape of rows and columns used to generate table"
 
 	| resultAsJSON parsedJSON bindings bindgingsListItem rowSize colSize formattedValue |
 	resultAsJSON := self resultAsJSONString contents.
-	parsedJSON := NeoJSONReader fromString: resultAsJSON.
+	parsedJSON := STONJSON fromString: resultAsJSON.
 	bindings := (parsedJSON at: #results) at: #bindings.
 	bindgingsListItem := (parsedJSON at: #head) at: #vars.
 	rowSize := bindings size.
 	colSize := bindgingsListItem size.
-	formattedValue := [ :input | 
+	formattedValue := [ :input |
 	                  [ (input asString splitOn: '#') at: 2 ]
 		                  on: Error
 		                  do: [ input asString ] ].
