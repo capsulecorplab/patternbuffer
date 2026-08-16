@@ -11,6 +11,34 @@ Internal Representation and Key Implementation Points.
     Implementation Points
    queryStream - Stream for appending query parameters
 
+For example, build the TTL file from the [firesat](https://github.com/opencaesar/firesat-example) database, then evaluate and inspect the following to execute a query for assemblies & subassemblies:
+
+```language=Pharo
+firesatClient := PBSPARQL new
+    datastore: 'firesat.ttl';
+    query: 'PREFIX fse:   <http://opencaesar.io/examples/firesat/disciplines/fse/fse#>
+PREFIX base:   <http://imce.jpl.nasa.gov/foundation/base#>
+
+SELECT ?assembly ?subassembly
+
+WHERE {
+        ?assembly base:contains ?subassembly
+}'.
+```
+
+Results of the SPARQL query can be viewed as a JSON object,
+
+```language=Pharo
+firesatClient resultAsJSON.
+```
+
+or as a table,
+
+```language=Pharo
+firesatClient resultAsTable.
+```
+
+
 "
 Class {
 	#name : #PBSPARQL,
