@@ -90,6 +90,17 @@ PBPython >> scriptpy [
 	^ scriptpy
 ]
 
+{ #category : #'initialization - data' }
+PBPython >> setupPythonVenv [
+	"comment stating purpose of instance-side method"
+
+	"scope: class-variables  &  instance-variables"
+
+	| venv |
+	venv := 'venv' asFileReference.
+	venv exists ifFalse: [ LibC runCommand: 'python -m venv venv' ]
+]
+
 { #category : #accessing }
 PBPython >> traceback [
 

@@ -43,6 +43,14 @@ PBSPARQL >> datastore: aStringOrFileReference [
 	data := aStringOrFileReference asFileReference contents
 ]
 
+{ #category : #'accessing - query' }
+PBSPARQL >> datastore: aStringOrFileReference query: aSPARQLString [
+	"wrapper method for specifying a datastore and running a query"
+
+	self datastore: aStringOrFileReference.
+	self query: aSPARQLString
+]
+
 { #category : #accessing }
 PBSPARQL >> endpoint [
 

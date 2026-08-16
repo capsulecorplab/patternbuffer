@@ -21,18 +21,17 @@ Class {
 	#category : #PatternBuffer
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'accessing - query' }
 PBRDFLib >> datastore: aStringOrFileReference query: aString [
-
 	"Executes a SPARQL directly against an RDF datastore using the RDFLib Python package"
 
-	pythonScript := { 
+	pythonScript := {
 		                'from rdflib import Graph'.
 		                ('datastore = """{1}"""' format:
 			                 { aStringOrFileReference }).
 		                ('query = """{1}"""' format: { aString }).
 		                'g = Graph()'.
-		                'g.parse(datastore, format="turtle")'.
+		                'g.parse(data=datastore, format="turtle")'.
 		                'results = g.query(query)'.
 		                'result_as_byte_string = results.serialize(format="json")'.
 		                'result_as_json = str(result_as_byte_string, "utf-8")'.
