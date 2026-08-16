@@ -12,7 +12,6 @@ BaselineOfPatternBuffer >> baseline: spec [
 	spec for: #common do: [ "Dependencies"
 		self containersArray2D: spec.
 		self neoJSON: spec.
-		self systemInteraction: spec.
 
 		"Packages"
 		spec
@@ -38,15 +37,4 @@ BaselineOfPatternBuffer >> neoJSON: spec [
 	spec
 		baseline: 'NeoJSON'
 		with: [ spec repository: 'github://svenvc/NeoJSON:v17/repository' ]
-]
-
-{ #category : #'as yet unclassified' }
-BaselineOfPatternBuffer >> systemInteraction: spec [
-
-	"baseline for SystemInteraction"
-
-	spec
-		baseline: 'SystemInteraction'
-		with: [ 
-		spec repository: 'github://jecisc/SystemInteraction:v1.0.3/src' ]
 ]
