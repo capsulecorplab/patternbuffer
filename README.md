@@ -4,10 +4,10 @@ PatternBuffer is a Pharo/Smalltalk client for querying RDF databases.
 
 ## Requirements
 
-### For Linux (Ubuntu 20.04 Recommended)
+### For Linux (Ubuntu 24.04 Recommended)
 
-- [Pharo](https://pharo.org/download) (10.0 recommended)
-- [RDFLib](https://github.com/RDFLib/rdflib) installed on system Python
+- [Pharo](https://pharo.org/download) (13+ recommended)
+- python3-venv
 
 ## Loading instructions
 
@@ -15,7 +15,7 @@ To load the latest release, open a playground window (`Ctrl+O+W`) and evaluate:
 
 ```smalltalk
 Metacello new baseline: 'PatternBuffer';
-    repository: 'github://capsulecorplab/patternbuffer:v0.5.0';
+    repository: 'github://capsulecorplab/patternbuffer:main/src';
     load.
 ```
 
