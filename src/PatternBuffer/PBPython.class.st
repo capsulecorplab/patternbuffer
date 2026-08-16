@@ -6,78 +6,99 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'pythonScript',
-		'traceback'
+		'scriptpy',
+		'traceback',
+		'tracebacklog'
 	],
 	#category : #PatternBuffer
 }
 
 { #category : #'instance creation' }
 PBPython >> fromArrayOfStrings: aPythonScriptAsArrayOfStrings [
-
 	"Execute a python script from an array of strings"
 
-	| stdout |
-	aPythonScriptAsArrayOfStrings.
+	| aPythonScriptAsString |
+	aPythonScriptAsString := String lf join:
+		                         aPythonScriptAsArrayOfStrings.
 
-	"clear script.py, if it exists"
-	SICommand waitForCommand: 'rm' arguments: { 'script.py' }.
-
-	"clear traceback.log, if it exists"
-	SICommand waitForCommand: 'rm' arguments: { 'traceback.log' }.
-
-	"write python script to a file"
-	aPythonScriptAsArrayOfStrings do: [ :line | 
-		SICommand waitForCommand: 'printf' arguments: { 
-				($' asString , line , '\n' , $' asString).
-				'>>'.
-				'script.py' } ].
-
-	"execute script.py, read contents of stdout, and pipe stderror to a log file"
-	stdout := SICommand
-		          waitForCommand: 'python'
-		          arguments: { 'script.py'. '2>traceback.log' }.
-
-	"read contents of traceback"
-	pythonScript := 'script.py' asFileReference contents.
-
-	"read contents of traceback"
-	traceback := 'traceback.log' asFileReference contents.
-
-	traceback contents isNotEmpty ifTrue: [ Error signal: traceback ].
-
-	^ stdout
+	^ self fromString: aPythonScriptAsString
 ]
 
 { #category : #'instance creation' }
 PBPython >> fromString: aPythonScriptAsString [
-
 	"Execute a python script from a string"
 
-	| stdout |
-	pythonScript := aPythonScriptAsString.
+	| stream stdouttxt stdout |
+	"create file reference object for script.py"
+	stdouttxt := 'stdout.txt' asFileReference.
 
-	"clear traceback.log, if it exists"
-	SICommand waitForCommand: 'rm' arguments: { 'traceback.log' }.
+	"delete stdout.txt, if it exists"
+	stdouttxt exists ifTrue: [ stdouttxt delete ].
+
+	"delete script.py, if it exists"
+	scriptpy exists ifTrue: [ scriptpy delete ].
+
+	"delete traceback.log, if it exists"
+	tracebacklog exists ifTrue: [ tracebacklog delete ].
+
+	"write contents of script.py to stream"
+	stream := scriptpy writeStream.
+	stream nextPutAll: aPythonScriptAsString.
+	stream close.
+
+	"execute script.py, read contents of stdout, and pipe stderror to a log file"
+	LibC runCommand:
+		'./venv/bin/python script.py >stdout.txt 2>traceback.log'.
 
 	"read contents of stdout"
-	stdout := SICommand waitForCommand: 'printf' arguments: { 
-			          ($' asString , pythonScript , $' asString).
-			          '|'.
-			          'python'.
-			          '2>traceback.log' }.
+	stdout := stdouttxt contents.
 
 	"read contents of traceback"
-	traceback := 'traceback.log' asFileReference contents.
+	pythonScript := scriptpy contents.
 
-	('*Traceback*' match: traceback) ifTrue: [ Error signal: traceback ].
+	"read contents of traceback"
+	traceback := tracebacklog contents.
+
+	"throw error if traceback"
+	traceback isNotEmpty ifTrue: [ Error signal: traceback ].
 
 	^ stdout
+]
+
+{ #category : #initialization }
+PBPython >> initialize [
+	" Initialize python-venv if none exists "
+
+	self setupPythonVenv.
+
+	"create file reference object for script.py"
+	scriptpy := 'script.py' asFileReference.
+
+	"create file reference object for script.py"
+	tracebacklog := 'traceback.log' asFileReference
 ]
 
 { #category : #accessing }
 PBPython >> pythonScript [
 
 	^ pythonScript
+]
+
+{ #category : #accessing }
+PBPython >> scriptpy [
+
+	^ scriptpy
+]
+
+{ #category : #'initialization - data' }
+PBPython >> setupPythonVenv [
+	"comment stating purpose of instance-side method"
+
+	"scope: class-variables  &  instance-variables"
+
+	| venv |
+	venv := 'venv' asFileReference.
+	venv exists ifFalse: [ LibC runCommand: 'python -m venv venv' ]
 ]
 
 { #category : #accessing }

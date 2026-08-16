@@ -6,13 +6,11 @@ Class {
 
 { #category : #baselines }
 BaselineOfPatternBuffer >> baseline: spec [
-
 	"baseline"
 
 	<baseline>
 	spec for: #common do: [ "Dependencies"
-		self neoJSON: spec.
-		self systemInteraction: spec.
+		self containersArray2D: spec.
 
 		"Packages"
 		spec
@@ -21,22 +19,11 @@ BaselineOfPatternBuffer >> baseline: spec [
 ]
 
 { #category : #'as yet unclassified' }
-BaselineOfPatternBuffer >> neoJSON: spec [
-
-	"baseline for NeoJSON"
-
-	spec
-		baseline: 'NeoJSON'
-		with: [ spec repository: 'github://svenvc/NeoJSON:v17/repository' ]
-]
-
-{ #category : #'as yet unclassified' }
-BaselineOfPatternBuffer >> systemInteraction: spec [
-
-	"baseline for SystemInteraction"
+BaselineOfPatternBuffer >> containersArray2D: spec [
+	"baseline for ContainersArray2D"
 
 	spec
-		baseline: 'SystemInteraction'
-		with: [ 
-		spec repository: 'github://jecisc/SystemInteraction:v1.0.3/src' ]
+		baseline: 'ContainersArray2D'
+		with: [
+		spec repository: 'github://pharo-containers/Containers-Array2D/src' ]
 ]

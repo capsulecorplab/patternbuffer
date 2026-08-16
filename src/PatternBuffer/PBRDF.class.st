@@ -70,26 +70,23 @@ PBRDF >> data [
 
 { #category : #accessing }
 PBRDF >> datastore [
-
 	"accessor method for path to RDF datastore"
 
-	| datastore |
+	| rdfdatattl stream |
+	rdfdatattl := 'rdfdata.ttl' asFileReference.
+
 	"save in-memory rdf data to local file system"
-	SICommand waitForCommand: 'printf' arguments: { 
-			($' asString , data , $' asString).
-			'>'.
-			'rdfdata.ttl'.
-			'2>stderr.log' }.
+	rdfdatattl exists ifTrue: [ rdfdatattl delete ].
+	stream := rdfdatattl writeStream.
+	stream nextPutAll: data.
+	stream close.
 
-	datastore := 'rdfdata.ttl'.
-
-	^ datastore
+	^ rdfdatattl contents
 ]
 
 { #category : #'instance creation' }
 PBRDF >> fromFile: aStringOrFileReference [
-
-	"Store contents of file containing valid RDF syntax, s.a., Turtle or N3, in-memory"
+	"Load contents of file containing valid RDF syntax, s.a., Turtle or N3, in-memory"
 
 	data := aStringOrFileReference asFileReference contents
 ]
