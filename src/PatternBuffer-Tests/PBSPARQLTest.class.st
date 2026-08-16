@@ -8287,15 +8287,20 @@ PBSPARQLTest >> resultAsJSONString [
 
 { #category : #running }
 PBSPARQLTest >> setUp [
+	"creates a mock rdfdata.ttl file for use in tests"
 
+	| rdfdatattl stream |
 	super setUp.
 	sparqlClient := PBSPARQL new.
-	"execute command to print contents of rdfdata to a file"
-	SICommand waitForCommand: 'printf' arguments: { 
-			($' asString , self rdfdataString , $' asString).
-			'>'.
-			'rdfdata.ttl'.
-			'2>stderror.log' }
+
+	"create file reference object for rdfdata.ttl"
+	rdfdatattl := 'rdfdata.ttl' asFileReference.
+
+	"save contents of rdfdata to a rdfdata.ttl"
+	rdfdatattl exists ifTrue: [ rdfdatattl delete ].
+	stream := rdfdatattl writeStream.
+	stream nextPutAll: self rdfdataString.
+	stream close
 ]
 
 { #category : #accessing }
@@ -8320,7 +8325,6 @@ PBSPARQLTest >> testEndpoint [
 
 { #category : #tests }
 PBSPARQLTest >> testQuery [
-
 	"test that a query against a local rdf datastore yields a result from an internally created PBRDF object"
 
 	sparqlClient datastore: 'rdfdata.ttl' query: self sparqlString

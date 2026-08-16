@@ -32,7 +32,6 @@ PBPythonTest >> testFromString [
 
 { #category : #tests }
 PBPythonTest >> testPythonScript [
-
 	"tests Hello, world! example"
 
 	| pythonScript pythonClient |
@@ -46,19 +45,20 @@ PBPythonTest >> testPythonScript [
 
 { #category : #tests }
 PBPythonTest >> testTraceback [
-
 	"tests Tracebacks are piped from stderr to a log file and yields an error in Pharo"
 
-	| pythonScript pythonClient |
-	pythonScript := 'raise Exception("Ye cannae change the laws of physics!")'.
+	| pythonScript pythonClient exception expectedError |
+	exception := 'Ye cannae change the laws of physics!'.
+	pythonScript := 'raise Exception("' , exception , '")'.
 	pythonClient := PBPython new.
+	expectedError := 'Traceback (most recent call last):'
+	                 , Character lf asString , '  File "'
+	                 , pythonClient scriptpy pathString
+	                 , '", line 1, in <module>' , Character lf asString
+	                 , '    ' , pythonScript , Character lf asString
+	                 , 'Exception: ' , exception , ''
+	                 , Character lf asString.
 	self assert: ([ pythonClient fromString: pythonScript ]
 			 on: Error
-			 do: [ 
-				 pythonClient traceback
-				 = ('Traceback (most recent call last):' , Character lf asString
-					  , '  File "<stdin>", line 1, in <module>'
-					  , Character lf asString
-					  , 'Exception: Ye cannae change the laws of physics!'
-					  , Character lf asString) ])
+			 do: [ pythonClient traceback = expectedError ])
 ]

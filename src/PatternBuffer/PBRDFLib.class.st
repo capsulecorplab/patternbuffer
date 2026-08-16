@@ -42,6 +42,26 @@ PBRDFLib >> datastore: aStringOrFileReference query: aString [
 	^ PBPython new fromArrayOfStrings: pythonScript
 ]
 
+{ #category : #initialization }
+PBRDFLib >> initialize [
+	"install rdflib with pip via python-venv, if not already installed"
+
+	| requirementsTxt |
+	"initialize python as to ensure python venv already exists"
+	PBPython new.
+
+	"create file reference object for requirements.txt"
+	requirementsTxt := 'requirements.txt' asFileReference.
+
+	"store contents of pip freeze to requirements.txt file"
+	LibC runCommand:
+		'./venv/bin/pip freeze > ' , requirementsTxt pathString.
+
+	"install rdflib via pip if not installed"
+	('*rdflib*' match: requirementsTxt contents) ifFalse: [
+		LibC runCommand: './venv/bin/pip install rdflib' ]
+]
+
 { #category : #accessing }
 PBRDFLib >> pythonScript [
 
