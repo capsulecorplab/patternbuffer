@@ -11,7 +11,6 @@ BaselineOfPatternBuffer >> baseline: spec [
 	<baseline>
 	spec for: #common do: [ "Dependencies"
 		self containersArray2D: spec.
-		self neoJSON: spec.
 
 		"Packages"
 		spec
@@ -27,14 +26,4 @@ BaselineOfPatternBuffer >> containersArray2D: spec [
 		baseline: 'ContainersArray2D'
 		with: [
 		spec repository: 'github://pharo-containers/Containers-Array2D/src' ]
-]
-
-{ #category : #'as yet unclassified' }
-BaselineOfPatternBuffer >> neoJSON: spec [
-
-	"baseline for NeoJSON"
-
-	spec
-		baseline: 'NeoJSON'
-		with: [ spec repository: 'github://svenvc/NeoJSON:v17/repository' ]
 ]
