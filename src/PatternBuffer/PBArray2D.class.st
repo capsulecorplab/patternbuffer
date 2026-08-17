@@ -34,24 +34,34 @@ Class {
 	#category : #PatternBuffer
 }
 
+{ #category : #'row/column operations' }
+PBArray2D >> atRow: rowNumber [
+
+	(rowNumber between: 1 and: numberOfRows) ifFalse: [
+		self error: '1st subscript out of range' ].
+	^ contents
+		  copyFrom: rowNumber - 1 * numberOfColumns + 1
+		  to: rowNumber * numberOfColumns
+]
+
 { #category : #accessing }
 PBArray2D >> columnNames [
 
 	^ columnNames
 ]
 
-{ #category : #'*PatternBuffer' }
-PBArray2D >> inspectorExtension [
+{ #category : #'inspector extensions' }
+PBArray2D >> inspectionTable: specBuilder [
 
-	<inspectorPresentationOrder: 0 title: 'Matrix'>
+	<inspectorPresentationOrder: 10 title: 'Table'>
 	| specTable |
-	specTable := SpTablePresenter new.
+	specTable := specBuilder newTable.
 	specTable addColumn: (SpIndexTableColumn new
 			 title: '#';
 			 width: 30;
 			 yourself).
 
-	1 to: numberOfColumns do: [ :index | 
+	1 to: numberOfColumns do: [ :index |
 		specTable addColumn: (SpStringTableColumn new
 				 title: (self columnNames at: index);
 				 evaluated: [ :each | each at: index ];
