@@ -72,6 +72,25 @@ PBArray2D >> inspectionTable: specBuilder [
 	^ specTable
 ]
 
+{ #category : #'accessing - compatibility' }
+PBArray2D >> numberOfRows [
+
+	^ numberOfRows
+]
+
+{ #category : #printing }
+PBArray2D >> printOn: aStream [
+
+	aStream nextPutAll: '('.
+	(1 to: self numberOfRows)
+		do: [ :r |
+			(self atRow: r)
+				do: [ :each | aStream print: each ]
+				separatedBy: [ aStream space ] ]
+		separatedBy: [ aStream cr ].
+	aStream nextPutAll: ' )'
+]
+
 { #category : #setter }
 PBArray2D >> rows: rowNumber columns: columnNumber tabulate: aTwoArgumentBlock columnNames: anArrayOfColumnNames [
 	"Answer a new Matrix of the given dimensions where
