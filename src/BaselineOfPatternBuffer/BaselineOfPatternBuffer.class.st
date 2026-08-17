@@ -18,12 +18,12 @@ BaselineOfPatternBuffer >> baseline: spec [
 			package: 'PatternBuffer-Tests' ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #dependencies }
 BaselineOfPatternBuffer >> containersArray2D: spec [
 	"baseline for ContainersArray2D"
 
-	spec
-		baseline: 'ContainersArray2D'
-		with: [
-		spec repository: 'github://pharo-containers/Containers-Array2D/src' ]
+	spec baseline: 'ContainersArray2D' with: [
+		spec
+			loads: #( 'Containers-Array2D' );
+			repository: 'github://pharo-containers/Containers-Array2D/src' ]
 ]
