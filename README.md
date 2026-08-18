@@ -11,11 +11,19 @@ A Pharo/Smalltalk library for interacting with linked data models via contextual
 
 ## Loading instructions
 
-To load the latest release, open a playground window (`Ctrl+O+W`) and evaluate:
+To load the latest development branch, open a playground window (`Ctrl+O+W`) and evaluate:
 
 ```smalltalk
 Metacello new baseline: 'PatternBuffer';
     repository: 'github://capsulecorplab/patternbuffer:main/src';
+    load.
+```
+
+To load the latest release, open a playground window (`Ctrl+O+W`) and evaluate:
+
+```smalltalk
+Metacello new baseline: 'PatternBuffer';
+    repository: 'github://capsulecorplab/patternbuffer:v0.5.1/src';
     load.
 ```
 
