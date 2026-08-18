@@ -56,16 +56,17 @@ PBArray2D >> inspectionTable: specBuilder [
 	<inspectorPresentationOrder: 10 title: 'Table'>
 	| specTable |
 	specTable := specBuilder newTable.
-	specTable addColumn: (SpIndexTableColumn new
+	specTable beResizable addColumn: (SpIndexTableColumn new
 			 title: '#';
 			 width: 30;
 			 yourself).
+	"beResizable;"
 
 	1 to: numberOfColumns do: [ :index |
 		specTable addColumn: (SpStringTableColumn new
 				 title: (self columnNames at: index);
 				 evaluated: [ :each | each at: index ];
-				 beNotExpandable) ].
+				 beExpandable) ].
 
 	specTable items:
 		((1 to: numberOfRows) collect: [ :index | self atRow: index ]).
