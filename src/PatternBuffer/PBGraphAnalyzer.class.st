@@ -3,9 +3,10 @@ I represent a class for visualizing graphs in Roassal3.
 	
 I am responsible for generating an expoitable graph visualization of model elements and relations.
 
-Example Usage
+## Example Usage
 
-```smalltalk
+```language=Pharo
+|g|
 g := PBGraphAnalyzer new.
 g elements: Collection withAllSubclasses.
 g relation: [ :cls | cls dependentClasses ].
@@ -15,24 +16,25 @@ g build
 
 "
 Class {
-	#name : #PBGraphAnalyzer,
-	#superclass : #Object,
+	#name : 'PBGraphAnalyzer',
+	#superclass : 'Object',
 	#instVars : [
 		'canvas',
 		'layout',
 		'elements'
 	],
-	#category : #PatternBuffer
+	#category : 'PatternBuffer',
+	#package : 'PatternBuffer'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGraphAnalyzer >> build [
 
 	layout on: elements.
 	^ canvas
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGraphAnalyzer >> elements: aCollectionOfElements [
 
 	"adds a collection of elements as an RSGroup to canvas"
@@ -52,7 +54,7 @@ PBGraphAnalyzer >> elements: aCollectionOfElements [
 	elements @ (RSLabeled new fontSize: 2)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGraphAnalyzer >> initialize [
 
 	super initialize.
@@ -61,7 +63,7 @@ PBGraphAnalyzer >> initialize [
 	layout := RSForceBasedLayout new charge: -200
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGraphAnalyzer >> layout: aLayout [
 
 	"option to set layout"
@@ -69,7 +71,7 @@ PBGraphAnalyzer >> layout: aLayout [
 	layout := aLayout
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGraphAnalyzer >> relation: aBlockOrSymbol [
 
 	"creates edges between nodes in canvas from a block or symbol representing their relation"
@@ -87,7 +89,7 @@ PBGraphAnalyzer >> relation: aBlockOrSymbol [
 	canvas nodes @ RSHighlightable red withOutgoingEdges
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBGraphAnalyzer >> scale: aBlockOrSymbol [
 
 	"option to set scale"

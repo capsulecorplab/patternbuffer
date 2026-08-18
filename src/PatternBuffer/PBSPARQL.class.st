@@ -41,8 +41,8 @@ firesatClient resultAsTable.
 
 "
 Class {
-	#name : #PBSPARQL,
-	#superclass : #Object,
+	#name : 'PBSPARQL',
+	#superclass : 'Object',
 	#instVars : [
 		'endpoint',
 		'queryStream',
@@ -50,10 +50,11 @@ Class {
 		'data',
 		'rdfdata'
 	],
-	#category : #PatternBuffer
+	#category : 'PatternBuffer',
+	#package : 'PatternBuffer'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBSPARQL >> appendUrlEncodedSPARQLStringToQueryStream: aUrlEncodedSPARQLString [
 
 	"Append aSPARQLString to the receiver's query stream, execute query, and cache results"
@@ -63,7 +64,7 @@ PBSPARQL >> appendUrlEncodedSPARQLStringToQueryStream: aUrlEncodedSPARQLString [
 		nextPutAll: aUrlEncodedSPARQLString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBSPARQL >> datastore: aStringOrFileReference [
 
 	"Sets path to and stores contents of RDF data from a file path to an RDF datastore, s.a. a .ttl or (TODO) .n3 file, to be used for directly executing SPARQL queries against."
@@ -71,7 +72,7 @@ PBSPARQL >> datastore: aStringOrFileReference [
 	data := aStringOrFileReference asFileReference contents
 ]
 
-{ #category : #'accessing - query' }
+{ #category : 'accessing - query' }
 PBSPARQL >> datastore: aStringOrFileReference query: aSPARQLString [
 	"wrapper method for specifying a datastore and running a query"
 
@@ -79,19 +80,19 @@ PBSPARQL >> datastore: aStringOrFileReference query: aSPARQLString [
 	self query: aSPARQLString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> endpoint [
 
 	^ endpoint
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBSPARQL >> endpoint: aUrl [
 
 	endpoint := aUrl
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBSPARQL >> initialize [
 
 	" Private - Initialize the receiver's stream "
@@ -100,7 +101,7 @@ PBSPARQL >> initialize [
 	self queryStream: (ReadWriteStream on: String new)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> query [
 
 	" Answer a SPARQL <String> representing the current query "
@@ -108,7 +109,7 @@ PBSPARQL >> query [
 	^ queryStream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> query: aSPARQLString [
 
 	"Executes a SPARQL query directly against a local RDF datastore.
@@ -132,31 +133,31 @@ PBSPARQL >> query: aSPARQLString [
 				           , '&format=json&output=json&results=json') contents ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> queryStream [
 
 	^ queryStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> queryStream: anObject [
 
 	queryStream := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> result [
 
 	^ result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQL >> result: aString [
 
 	result := aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBSPARQL >> resultAsGraph [
 
 	"Executes and returns query as a Roassal graph of nodes and directed labeled edges"
@@ -284,7 +285,7 @@ PBSPARQL >> resultAsGraph [
 	^ canvas
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PBSPARQL >> resultAsJSON [
 
 	"returns query as JSON"
@@ -292,7 +293,7 @@ PBSPARQL >> resultAsJSON [
 	^ result
 ]
 
-{ #category : #'accessing - query' }
+{ #category : 'accessing - query' }
 PBSPARQL >> resultAsTable [
 	"Executes and returns query as Array2D object"
 

@@ -2,17 +2,18 @@
 I represent an RDF data object
 "
 Class {
-	#name : #PBRDF,
-	#superclass : #Object,
+	#name : 'PBRDF',
+	#superclass : 'Object',
 	#instVars : [
 		'data',
 		'rdfAsJSON',
 		'triplestore'
 	],
-	#category : #PatternBuffer
+	#category : 'PatternBuffer',
+	#package : 'PatternBuffer'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRDF >> asArrayOfTriples [
 
 	"accessor method for RDF data as an array of triples"
@@ -52,7 +53,7 @@ PBRDF >> asArrayOfTriples [
 	^ triplestore
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRDF >> asGraph [
 
 	"accessor method for RDF data as a graph of nodes and edges"
@@ -60,7 +61,7 @@ PBRDF >> asGraph [
 	self shouldBeImplemented
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRDF >> data [
 
 	"accessor method for RDF data as a string"
@@ -68,7 +69,7 @@ PBRDF >> data [
 	^ data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRDF >> datastore [
 	"accessor method for path to RDF datastore"
 
@@ -84,14 +85,14 @@ PBRDF >> datastore [
 	^ rdfdatattl contents
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBRDF >> fromFile: aStringOrFileReference [
 	"Load contents of file containing valid RDF syntax, s.a., Turtle or N3, in-memory"
 
 	data := aStringOrFileReference asFileReference contents
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBRDF >> fromString: aString [
 
 	"constructs a PBRDF object from a string containing valid RDF syntax, s.a., Turtle or N3"

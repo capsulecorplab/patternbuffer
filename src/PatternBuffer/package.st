@@ -1,1 +1,1 @@
-Package { #name : #PatternBuffer }
+Package { #name : 'PatternBuffer' }

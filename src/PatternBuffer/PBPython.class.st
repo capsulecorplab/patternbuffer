@@ -2,18 +2,19 @@
 I represent python bindings for executing python scripts via terminal
 "
 Class {
-	#name : #PBPython,
-	#superclass : #Object,
+	#name : 'PBPython',
+	#superclass : 'Object',
 	#instVars : [
 		'pythonScript',
 		'scriptpy',
 		'traceback',
 		'tracebacklog'
 	],
-	#category : #PatternBuffer
+	#category : 'PatternBuffer',
+	#package : 'PatternBuffer'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPython >> fromArrayOfStrings: aPythonScriptAsArrayOfStrings [
 	"Execute a python script from an array of strings"
 
@@ -24,7 +25,7 @@ PBPython >> fromArrayOfStrings: aPythonScriptAsArrayOfStrings [
 	^ self fromString: aPythonScriptAsString
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PBPython >> fromString: aPythonScriptAsString [
 	"Execute a python script from a string"
 
@@ -65,7 +66,7 @@ PBPython >> fromString: aPythonScriptAsString [
 	^ stdout
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBPython >> initialize [
 	" Initialize python-venv if none exists "
 
@@ -78,19 +79,19 @@ PBPython >> initialize [
 	tracebacklog := 'traceback.log' asFileReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPython >> pythonScript [
 
 	^ pythonScript
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPython >> scriptpy [
 
 	^ scriptpy
 ]
 
-{ #category : #'initialization - data' }
+{ #category : 'initialization - data' }
 PBPython >> setupPythonVenv [
 	"comment stating purpose of instance-side method"
 
@@ -101,7 +102,7 @@ PBPython >> setupPythonVenv [
 	venv exists ifFalse: [ LibC runCommand: 'python -m venv venv' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBPython >> traceback [
 
 	^ traceback

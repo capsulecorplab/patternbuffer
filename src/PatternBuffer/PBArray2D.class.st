@@ -24,17 +24,18 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #PBArray2D,
-	#superclass : #CTArray2D,
+	#name : 'PBArray2D',
+	#superclass : 'CTArray2D',
 	#instVars : [
 		'columnNames',
 		'numberOfColumns',
 		'numberOfRows'
 	],
-	#category : #PatternBuffer
+	#category : 'PatternBuffer',
+	#package : 'PatternBuffer'
 }
 
-{ #category : #'row/column operations' }
+{ #category : 'row/column operations' }
 PBArray2D >> atRow: rowNumber [
 
 	(rowNumber between: 1 and: numberOfRows) ifFalse: [
@@ -44,13 +45,13 @@ PBArray2D >> atRow: rowNumber [
 		  to: rowNumber * numberOfColumns
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBArray2D >> columnNames [
 
 	^ columnNames
 ]
 
-{ #category : #'inspector extensions' }
+{ #category : 'inspector extensions' }
 PBArray2D >> inspectionTable: specBuilder [
 
 	<inspectorPresentationOrder: 10 title: 'Table'>
@@ -73,13 +74,13 @@ PBArray2D >> inspectionTable: specBuilder [
 	^ specTable
 ]
 
-{ #category : #'accessing - compatibility' }
+{ #category : 'accessing - compatibility' }
 PBArray2D >> numberOfRows [
 
 	^ numberOfRows
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PBArray2D >> printOn: aStream [
 
 	aStream nextPutAll: '('.
@@ -92,7 +93,7 @@ PBArray2D >> printOn: aStream [
 	aStream nextPutAll: ' )'
 ]
 
-{ #category : #setter }
+{ #category : 'setter' }
 PBArray2D >> rows: rowNumber columns: columnNumber tabulate: aTwoArgumentBlock columnNames: anArrayOfColumnNames [
 	"Answer a new Matrix of the given dimensions where
 	 result at: i at: j is aTwoArgumentBlock value: i value: j"

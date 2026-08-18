@@ -13,15 +13,16 @@ WHERE {
 }'.
 "
 Class {
-	#name : #PBRDFLib,
-	#superclass : #Object,
+	#name : 'PBRDFLib',
+	#superclass : 'Object',
 	#instVars : [
 		'pythonScript'
 	],
-	#category : #PatternBuffer
+	#category : 'PatternBuffer',
+	#package : 'PatternBuffer'
 }
 
-{ #category : #'accessing - query' }
+{ #category : 'accessing - query' }
 PBRDFLib >> datastore: aStringOrFileReference query: aString [
 	"Executes a SPARQL directly against an RDF datastore using the RDFLib Python package"
 
@@ -41,7 +42,7 @@ PBRDFLib >> datastore: aStringOrFileReference query: aString [
 	^ PBPython new fromArrayOfStrings: pythonScript
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PBRDFLib >> initialize [
 	"install rdflib with pip via python-venv, if not already installed"
 
@@ -61,7 +62,7 @@ PBRDFLib >> initialize [
 		LibC runCommand: './venv/bin/pip install rdflib' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBRDFLib >> pythonScript [
 
 	^ pythonScript
