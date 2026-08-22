@@ -1,13 +1,14 @@
 Class {
-	#name : #PBGraphAnalyzerTest,
-	#superclass : #TestCase,
+	#name : 'PBGraphAnalyzerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'graph'
 	],
-	#category : #'PatternBuffer-Tests'
+	#category : 'PatternBuffer-Tests',
+	#package : 'PatternBuffer-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PBGraphAnalyzerTest >> setUp [
 
 	super setUp.
@@ -18,7 +19,7 @@ PBGraphAnalyzerTest >> setUp [
 		         build
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBGraphAnalyzerTest >> testNodesAndEdgesNotEmpty [
 
 	self assert: graph nodes notEmpty.

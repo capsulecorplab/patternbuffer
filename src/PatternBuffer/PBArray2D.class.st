@@ -73,6 +73,12 @@ Class {
 	#package : 'PatternBuffer'
 }
 
+{ #category : 'testing' }
+PBArray2D class >> isDeprecated [
+
+	^ true
+]
+
 { #category : 'row/column operations' }
 PBArray2D >> atRow: rowNumber [
 

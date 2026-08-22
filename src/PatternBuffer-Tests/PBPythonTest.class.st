@@ -1,10 +1,11 @@
 Class {
-	#name : #PBPythonTest,
-	#superclass : #TestCase,
-	#category : #'PatternBuffer-Tests'
+	#name : 'PBPythonTest',
+	#superclass : 'TestCase',
+	#category : 'PatternBuffer-Tests',
+	#package : 'PatternBuffer-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPythonTest >> testFromArrayOfStrings [
 
 	"tests Hello, world! example from an array of strings"
@@ -18,7 +19,7 @@ PBPythonTest >> testFromArrayOfStrings [
 	self assert: stdout equals: 'Hello, world!' , Character lf asString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPythonTest >> testFromString [
 
 	"tests Hello, world! example from a string"
@@ -30,7 +31,7 @@ PBPythonTest >> testFromString [
 	self assert: stdout equals: 'Hello, world!' , Character lf asString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPythonTest >> testPythonScript [
 	"tests Hello, world! example"
 
@@ -43,7 +44,7 @@ PBPythonTest >> testPythonScript [
 		equals: 'print("Hello, world!")'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBPythonTest >> testTraceback [
 	"tests Tracebacks are piped from stderr to a log file and yields an error in Pharo"
 

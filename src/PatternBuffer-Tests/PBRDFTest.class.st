@@ -1,5 +1,6 @@
 Class {
-	#name : #PBRDFTest,
-	#superclass : #TestCase,
-	#category : #'PatternBuffer-Tests'
+	#name : 'PBRDFTest',
+	#superclass : 'TestCase',
+	#category : 'PatternBuffer-Tests',
+	#package : 'PatternBuffer-Tests'
 }
