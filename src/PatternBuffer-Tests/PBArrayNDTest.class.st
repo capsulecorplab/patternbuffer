@@ -87,7 +87,7 @@ PBArrayNDTest >> setUp [
 
 { #category : 'tests' }
 PBArrayNDTest >> testAt [
-	"Test that PBArrayND>>at: returns eitheir a column for a column name (string) or a row for a row number (positive integer)"
+	"Test that PBArrayND>>at: returns either a column for a column name (string) or a row for a row number (positive integer)"
 
 	self assert: ((ndArray at: 'dec') at: 43) equals: 42.
 	self assert: ((ndArray at: 'hex') at: 43) equals: '2a'.
@@ -163,4 +163,13 @@ PBArrayNDTest >> testInspectionTable [
 	self
 		assert: (ndArray inspectionTable: SpPresenter new) class
 		equals: SpTablePresenter
+]
+
+{ #category : 'tests' }
+PBArrayNDTest >> testItems [
+	"Test that PBArrayND>>items returns an array of PBOrderedDictionaries"
+
+	self assert: (ndArray items at: 43) first equals: 42.
+	self assert: ((ndArray items at: 43) at: 2) equals: '2a'.
+	self assert: ((ndArray items at: 43) at: 3) equals: '*'
 ]

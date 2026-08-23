@@ -126,6 +126,22 @@ PBArrayND >> atColumnName: columnName [
 		^ self atColumn: (self columnNames indexOf: columnName) ]
 ]
 
+{ #category : 'accessing rows/columns' }
+PBArrayND >> atRow: aRowNumber [
+
+	| a orderedDict |
+	a := super atRow: aRowNumber.
+	a size > 1
+		ifTrue: [
+				orderedDict := PBOrderedDictionary new.
+				columnNames do: [ :columnName |
+						orderedDict
+							at: columnName
+							put: ((self atColumnName: columnName) at: aRowNumber) ].
+				^ orderedDict ]
+		ifFalse: [ ^ a ]
+]
+
 { #category : 'accessing' }
 PBArrayND >> columnNames [
 
@@ -153,6 +169,23 @@ PBArrayND >> inspectionTable: specBuilder [
 	specTable items:
 		((1 to: self height) collect: [ :index | self atRow: index ]).
 	^ specTable
+]
+
+{ #category : 'accessing convenience' }
+PBArrayND >> items [
+	"access contents as an array of PBOrderedDictionary objects"
+
+	| a |
+	a := OrderedCollection new.
+	1 to: self height do: [ :row |
+			| orderedDict |
+			orderedDict := PBOrderedDictionary new.
+			self columnNames do: [ :columnName |
+					orderedDict
+						at: columnName
+						put: ((self atColumnName: columnName) at: row) ].
+			a add: orderedDict ].
+	^ a asArray
 ]
 
 { #category : 'printing' }
