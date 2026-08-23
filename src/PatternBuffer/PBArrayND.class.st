@@ -81,6 +81,34 @@ PBArrayND >> at: columnNameOrRowNumber [
 ]
 
 { #category : 'accessing convenience' }
+PBArrayND >> at: aColumnNameOrRowNumber at: aRowNumberOrColumnNumberOrColumnName [
+	"conventiently access a cell in the matrix"
+
+	aColumnNameOrRowNumber isString
+		ifTrue: [
+				aRowNumberOrColumnNumberOrColumnName isInteger
+					ifTrue: [ "by column name (string) and row number (positive integer)"
+							^ (self atColumnName: aColumnNameOrRowNumber) at:
+								  aRowNumberOrColumnNumberOrColumnName ]
+					ifFalse: [ self error: 'Expected positive integer' ] ]
+		ifFalse: [
+				aColumnNameOrRowNumber isInteger
+					ifTrue: [
+							aRowNumberOrColumnNumberOrColumnName isString
+								ifTrue: [ "by row number (positive integer) and column name (string)"
+										^ (self atColumnName: aRowNumberOrColumnNumberOrColumnName)
+											  at: aColumnNameOrRowNumber ]
+								ifFalse: [
+										aRowNumberOrColumnNumberOrColumnName isInteger
+											ifTrue: [ "by row number (positive integer) and column number (positive integer)"
+													^ (self at: aColumnNameOrRowNumber) at:
+														  aRowNumberOrColumnNumberOrColumnName ]
+											ifFalse: [
+											self error: 'Expected string or positive integer' ] ] ]
+					ifFalse: [ self error: 'Expected string or positive integer' ] ]
+]
+
+{ #category : 'accessing convenience' }
 PBArrayND >> atColumn: aColumnNameOrNumber [
 	"access a column using its column name (string) or column number (positive integer)"
 

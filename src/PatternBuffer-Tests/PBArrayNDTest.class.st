@@ -98,6 +98,29 @@ PBArrayNDTest >> testAt [
 ]
 
 { #category : 'tests' }
+PBArrayNDTest >> testAtAt [
+	"Test that PBArrayND>>at:at: returns expected value"
+
+	"by column name (string) and row number (positive integer)"
+
+	self assert: (ndArray at: 'dec' at: 43) equals: 42.
+	self assert: (ndArray at: 'hex' at: 43) equals: '2a'.
+	self assert: (ndArray at: 'char' at: 43) equals: '*'.
+
+	"by row number (positive integer) and column number"
+
+	self assert: (ndArray at: 43 at: 1) equals: 42.
+	self assert: (ndArray at: 43 at: 2) equals: '2a'.
+	self assert: (ndArray at: 43 at: 3) equals: '*'.
+
+	"by row number (positive integer) and column number"
+
+	self assert: (ndArray at: 43 at: 'dec') equals: 42.
+	self assert: (ndArray at: 43 at: 'hex') equals: '2a'.
+	self assert: (ndArray at: 43 at: 'char') equals: '*'
+]
+
+{ #category : 'tests' }
 PBArrayNDTest >> testAtColumn [
 	"Test that PBArrayND>>atColumn: returns either a column for a column name (string) or a column for a column number (positive integer)"
 
