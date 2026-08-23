@@ -305,20 +305,20 @@ PBSPARQL >> resultAsTable [
 	rowSize := bindings size.
 	colSize := vars size.
 	formattedValue := [ :input |
-	                  [ (input asString splitOn: '#') at: 2 ]
-		                  on: Error
-		                  do: [ input asString ] ].
+		                  [ (input asString splitOn: '#') at: 2 ]
+			                  on: Error
+			                  do: [ input asString ] ].
 
-	^ PBArray2D new
+	^ PBArrayND new
 		  rows: rowSize
 		  columns: colSize
-		  tabulate: [ :row :column |
-			  | value index |
-			  value := bindings at: row.
-			  formattedValue value: value.
-			  index := vars at: column.
-			  formattedValue value: ([ value at: index at: #value ]
-					   on: KeyNotFound
-					   do: [ '' ]) ]
+		  tabulate: [ :column :row |
+				  | value index |
+				  value := bindings at: row.
+				  formattedValue value: value.
+				  index := vars at: column.
+				  formattedValue value: ([ value at: index at: #value ]
+						   on: KeyNotFound
+						   do: [ '' ]) ]
 		  columnNames: vars
 ]

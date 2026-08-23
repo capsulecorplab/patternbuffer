@@ -1,13 +1,14 @@
 Class {
-	#name : #PBSPARQLTest,
-	#superclass : #TestCase,
+	#name : 'PBSPARQLTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'sparqlClient'
 	],
-	#category : #'PatternBuffer-Tests'
+	#category : 'PatternBuffer-Tests',
+	#package : 'PatternBuffer-Tests'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQLTest >> componentsQuery [
 
 	^ 'PREFIX fse:   <http://opencaesar.io/examples/firesat/disciplines/fse/fse#>
@@ -20,7 +21,7 @@ WHERE {
 }'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQLTest >> rdfdataString [
 
 	^ '@prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -7987,7 +7988,7 @@ owl:sameAs  rdf:type  owl:ObjectProperty .
 '
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQLTest >> resultAsJSONString [
 
 	^ '{ "head": {
@@ -8285,7 +8286,7 @@ PBSPARQLTest >> resultAsJSONString [
 '
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PBSPARQLTest >> setUp [
 	"creates a mock rdfdata.ttl file for use in tests"
 
@@ -8303,7 +8304,7 @@ PBSPARQLTest >> setUp [
 	stream close
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PBSPARQLTest >> sparqlString [
 
 	^ 'SELECT DISTINCT ?concept
@@ -8312,7 +8313,7 @@ WHERE {
 } LIMIT 50'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSPARQLTest >> testEndpoint [
 
 	sparqlClient endpoint: 'http://localhost:3030/database/sparql'.
@@ -8323,20 +8324,20 @@ PBSPARQLTest >> testEndpoint [
 	self assert: (sparqlClient endpoint beginsWith: 'http:')
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSPARQLTest >> testQuery [
 	"test that a query against a local rdf datastore yields a result from an internally created PBRDF object"
 
 	sparqlClient datastore: 'rdfdata.ttl' query: self sparqlString
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSPARQLTest >> testQueryStream [
 
 	self assert: (sparqlClient queryStream isKindOf: Stream)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSPARQLTest >> testResultAsJSON [
 	"Parse result as json, then check shape of rows and columns used to generate table"
 
@@ -8355,7 +8356,7 @@ PBSPARQLTest >> testResultAsJSON [
 	self assert: colSize equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PBSPARQLTest >> testResultAsTable [
 
 	"Test result as table contains column names"

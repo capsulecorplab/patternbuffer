@@ -1,1 +1,1 @@
-Package { #name : #'PatternBuffer-Tests' }
+Package { #name : 'PatternBuffer-Tests' }
