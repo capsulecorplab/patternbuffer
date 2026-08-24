@@ -113,8 +113,7 @@ PBArrayND >> atColumn: aColumnNameOrNumber [
 	"access a column using its column name (string) or column number (positive integer)"
 
 	aColumnNameOrNumber isString
-		ifTrue: [
-		^ self atColumn: (self columnNames indexOf: aColumnNameOrNumber) ]
+		ifTrue: [ ^ self atColumn: (columnNames indexOf: aColumnNameOrNumber) ]
 		ifFalse: [ ^ super atColumn: aColumnNameOrNumber ]
 ]
 
@@ -122,8 +121,7 @@ PBArrayND >> atColumn: aColumnNameOrNumber [
 PBArrayND >> atColumnName: columnName [
 	"access a column using its column name (string)"
 
-	columnName isString ifTrue: [
-		^ self atColumn: (self columnNames indexOf: columnName) ]
+	columnName isString ifTrue: [ ^ self atColumn: (columnNames indexOf: columnName) ]
 ]
 
 { #category : 'accessing rows/columns' }
@@ -180,10 +178,7 @@ PBArrayND >> items [
 	1 to: self height do: [ :row |
 			| orderedDict |
 			orderedDict := PBOrderedDictionary new.
-			self columnNames do: [ :columnName |
-					orderedDict
-						at: columnName
-						put: ((self atColumnName: columnName) at: row) ].
+			columnNames do: [ :columnName | orderedDict at: columnName put: ((self atColumnName: columnName) at: row) ].
 			a add: orderedDict ].
 	^ a asArray
 ]
