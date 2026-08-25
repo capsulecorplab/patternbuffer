@@ -6,7 +6,7 @@ I represent a matrix or an n-dimensional array. I provide methods for creating m
 Evaluate and inspect the following to render a table view of the ASCII table.
 
 ```lang=pharo
-| decArray hexArray charArray dictArray columnNames rows columns cellValue |
+| decArray hexArray charArray dictArray columnNames rows columns cellValue ndarray |
 
 decArray := #( 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
                 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38
@@ -54,11 +54,25 @@ columns := columnNames size.
 cellValue := [ :column :row |
               dictArray at: (dictArray keys at: column) at: row ].
 
-PBArrayND new
+ndarray := PBArrayND new
 	rows: rows
 	columns: columns
 	tabulate: cellValue
-	columnNames: columnNames
+	columnNames: columnNames.
+
+ndarray
+```
+
+Table column names can also be ""decorated"" by passing a block to the `PBArrayND>>tableColumnNames:` setter method.
+
+```lang=pharo
+ndArray tableColumnNames: [ :columnName |
+			columnName = 'dec'
+				ifTrue: [ 'decimal' ]
+				ifFalse: [
+						columnName = 'hex'
+							ifTrue: [ 'hexadecimal' ]
+							ifFalse: [ columnName = 'char' ifTrue: [ 'character' ] ] ] ]
 ```
 "
 Class {
