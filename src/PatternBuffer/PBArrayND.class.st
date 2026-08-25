@@ -65,7 +65,8 @@ Class {
 	#name : 'PBArrayND',
 	#superclass : 'CTArray2D',
 	#instVars : [
-		'columnNames'
+		'columnNames',
+		'tableColumnNames'
 	],
 	#category : 'PatternBuffer',
 	#package : 'PatternBuffer'
@@ -160,12 +161,11 @@ PBArrayND >> inspectionTable: specBuilder [
 
 	1 to: width do: [ :index |
 			specTable addColumn: (SpStringTableColumn new
-					 title: (self columnNames at: index);
+					 title: (self tableColumnNames at: index);
 					 evaluated: [ :each | each at: index ];
 					 beExpandable) ].
 
-	specTable items:
-		((1 to: self height) collect: [ :index | self atRow: index ]).
+	specTable items: ((1 to: self height) collect: [ :index | self atRow: index ]).
 	^ specTable
 ]
 
@@ -203,11 +203,9 @@ PBArrayND >> rows: aNumberOfRows columns: aNumberOfColumns tabulate: aTwoArgumen
 
 	| a |
 	columnNames := anArrayOfColumnNames.
+	tableColumnNames := [ :columnName | columnName ].
 
-	a := self class
-		     width: aNumberOfColumns
-		     height: aNumberOfRows
-		     tabulate: aTwoArgumentBlock.
+	a := self class width: aNumberOfColumns height: aNumberOfRows tabulate: aTwoArgumentBlock.
 
 	[ aNumberOfRows isInteger and: [ aNumberOfRows >= 0 ] ] assert.
 	[ aNumberOfColumns isInteger and: [ aNumberOfColumns >= 0 ] ] assert.
@@ -215,4 +213,18 @@ PBArrayND >> rows: aNumberOfRows columns: aNumberOfColumns tabulate: aTwoArgumen
 	contents := a contents.
 	width := a width.
 	^ self
+]
+
+{ #category : 'accessing' }
+PBArrayND >> tableColumnNames [
+	"access table column names"
+
+	^ columnNames collect: tableColumnNames
+]
+
+{ #category : 'setter' }
+PBArrayND >> tableColumnNames: aColumnNamesDecoratorBlock [
+	"decorate column names to be displayed in the table view"
+
+	tableColumnNames := aColumnNamesDecoratorBlock
 ]

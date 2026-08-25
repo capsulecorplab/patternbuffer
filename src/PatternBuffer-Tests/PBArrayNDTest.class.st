@@ -173,3 +173,19 @@ PBArrayNDTest >> testItems [
 	self assert: ((ndArray items at: 43) at: 2) equals: '2a'.
 	self assert: ((ndArray items at: 43) at: 3) equals: '*'
 ]
+
+{ #category : 'tests' }
+PBArrayNDTest >> testTableColumnNames [
+
+	ndArray tableColumnNames: [ :columnName |
+			columnName = 'dec'
+				ifTrue: [ 'decimal' ]
+				ifFalse: [
+						columnName = 'hex'
+							ifTrue: [ 'hexadecimal' ]
+							ifFalse: [ columnName = 'char' ifTrue: [ 'character' ] ] ] ].
+
+	self assert: ndArray tableColumnNames first equals: 'decimal'.
+	self assert: (ndArray tableColumnNames at: 2) equals: 'hexadecimal'.
+	self assert: ndArray tableColumnNames last equals: 'character'
+]
