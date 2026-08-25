@@ -134,7 +134,7 @@ PBArrayNDTest >> testAtColumn [
 
 { #category : 'tests' }
 PBArrayNDTest >> testAtColumnName [
-	"Test that PBArrayND>>atColumn: returns either a column for a column name (string) or a column for a column number (positive integer)"
+	"Test that PBArrayND>>atColumn: returns a column for a column name (string)"
 
 	self assert: ((ndArray atColumnName: 'dec') at: 43) equals: 42.
 	self assert: ((ndArray atColumnName: 'hex') at: 43) equals: '2a'.
@@ -147,6 +147,24 @@ PBArrayNDTest >> testAtRow [
 	self assert: (ndArray atRow: 43) first equals: 42.
 	self assert: ((ndArray atRow: 43) at: 2) equals: '2a'.
 	self assert: ((ndArray atRow: 43) at: 3) equals: '*'
+]
+
+{ #category : 'tests' }
+PBArrayNDTest >> testAtTableColumnName [
+	"Test that PBArrayND>>atColumn: returns a column for a table column name (string) as well as for a column name"
+
+	ndArray tableColumnNames: [ :columnName |
+			columnName = 'dec'
+				ifTrue: [ 'decimal' ]
+				ifFalse: [
+						columnName = 'hex'
+							ifTrue: [ 'hexadecimal' ]
+							ifFalse: [ columnName = 'char' ifTrue: [ 'character' ] ] ] ].
+
+	self assert: ((ndArray atColumnName: 'decimal') at: 43) equals: 42.
+	self assert: ((ndArray atColumnName: 'hexadecimal') at: 43) equals: '2a'.
+	self assert: ((ndArray atColumnName: 'character') at: 43) equals: '*'.
+	self testAtColumnName
 ]
 
 { #category : 'tests' }

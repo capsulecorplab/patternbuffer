@@ -120,9 +120,13 @@ PBArrayND >> atColumn: aColumnNameOrNumber [
 
 { #category : 'accessing convenience' }
 PBArrayND >> atColumnName: columnName [
-	"access a column using its column name (string)"
+	"access a column using its column name (string) or table column name (string)"
 
-	columnName isString ifTrue: [ ^ self atColumn: (columnNames indexOf: columnName) ]
+	columnName isString ifTrue: [
+			(columnNames includes: columnName)
+				ifTrue: [ ^ self atColumn: (columnNames indexOf: columnName) ]
+				ifFalse: [
+				(self tableColumnNames includes: columnName) ifTrue: [ ^ self atColumn: (self tableColumnNames indexOf: columnName) ] ] ]
 ]
 
 { #category : 'accessing rows/columns' }
