@@ -1,7 +1,7 @@
 Extension { #name : 'OrderedDictionaryTest' }
 
 { #category : '*PatternBuffer-Tests' }
-OrderedDictionaryTest >> testInspectionTree [
+OrderedDictionaryTest >> testInspectionItems [
 
 	| orderedDict |
 	orderedDict := OrderedDictionary newFrom: {
@@ -10,6 +10,6 @@ OrderedDictionaryTest >> testInspectionTree [
 			               ('char' -> '*') }.
 
 	self
-		assert: (orderedDict inspectionTree: SpPresenter new) class
+		assert: (orderedDict inspectionItems: SpPresenter new) class
 		equals: SpTreeTablePresenter
 ]

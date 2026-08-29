@@ -1,7 +1,7 @@
 Extension { #name : 'OrderedDictionary' }
 
 { #category : '*PatternBuffer' }
-OrderedDictionary >> inspectionTree: aBuilder [
+OrderedDictionary >> inspectionItems: aBuilder [
 
 	<inspectorPresentationOrder: -1 title: 'Items'>
 	^ aBuilder newTreeTable
