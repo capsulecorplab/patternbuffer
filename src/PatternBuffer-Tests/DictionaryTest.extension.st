@@ -1,7 +1,7 @@
 Extension { #name : 'DictionaryTest' }
 
 { #category : '*PatternBuffer-Tests' }
-DictionaryTest >> testInspectionItems [
+DictionaryTest >> testInspectionTreeTable [
 
 	| dict |
 	dict := Dictionary newFrom: {
@@ -10,6 +10,6 @@ DictionaryTest >> testInspectionItems [
 			        ('char' -> '*') }.
 
 	self
-		assert: (dict inspectionItems: SpPresenter new) class
+		assert: (dict inspectionTreeTable: SpPresenter new) class
 		equals: SpTreeTablePresenter
 ]

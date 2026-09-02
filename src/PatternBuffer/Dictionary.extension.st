@@ -1,9 +1,9 @@
 Extension { #name : 'Dictionary' }
 
 { #category : '*PatternBuffer' }
-Dictionary >> inspectionItems: aBuilder [
+Dictionary >> inspectionTreeTable: aBuilder [
 
-	<inspectorPresentationOrder: -1 title: 'Items'>
+	<inspectorPresentationOrder: -1 title: 'Tree'>
 	^ aBuilder newTreeTable
 		  addColumn: (SpStringTableColumn new
 				   title: 'Key';
