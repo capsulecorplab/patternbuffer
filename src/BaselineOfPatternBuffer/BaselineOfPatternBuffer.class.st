@@ -46,8 +46,7 @@ BaselineOfPatternBuffer >> containersArray2D: spec [
 
 { #category : 'actions' }
 BaselineOfPatternBuffer >> postload: loader package: packageSpec [
+	"Install RDFLib"
 
-	Transcript
-		show: 'Project loaded!';
-		cr
+	PBRDFLib installRDFLib
 ]
