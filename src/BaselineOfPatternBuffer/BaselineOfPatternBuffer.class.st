@@ -21,16 +21,18 @@ BaselineOfPatternBuffer >> baseline: spec [
 				package: 'PatternBuffer-RDF'
 				with: [ spec requires: #( 'PatternBuffer-Python' ) ];
 				package: 'PatternBuffer-Tests'
-				with: [ spec requires: #( 'PatternBuffer-RDF' ) ] ].
+				with: [ spec requires: #( 'PatternBuffer-RDF' ) ].
 
-	"Groups"
-	spec
-		group: 'RDF' with: #( 'PatternBuffer-Python' 'PatternBuffer-RDF' );
-		group: 'Python' with: #( 'PatternBuffer-Python' );
-		group: 'Tests' with: #( 'PatternBuffer-Tests' );
-		group: 'All'
-		with: #( 'PatternBuffer' 'PatternBuffer-RDF' 'PatternBuffer-Python'
-			   'PatternBuffer-Tests' )
+			"Groups"
+			spec
+				group: 'RDF'
+				with: #( 'PatternBuffer-Python' 'PatternBuffer-RDF' );
+				group: 'Python' with: #( 'PatternBuffer-Python' );
+				group: 'Tests' with: #( 'PatternBuffer-Tests' );
+				group: 'All'
+				with:
+					#( 'PatternBuffer' 'PatternBuffer-RDF' 'PatternBuffer-Python'
+					   'PatternBuffer-Tests' ) ]
 ]
 
 { #category : 'dependencies' }
