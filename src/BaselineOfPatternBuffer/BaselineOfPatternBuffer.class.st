@@ -32,12 +32,15 @@ BaselineOfPatternBuffer >> baseline: spec [
 			"Groups"
 			spec
 				group: 'default' with: #( 'PatternBuffer' );
+				group: 'Python' with: #( 'PatternBuffer-Python' );
 				group: 'RDF'
 				with: #( 'PatternBuffer-Python' 'PatternBuffer-RDF' );
-				group: 'Python' with: #( 'PatternBuffer-Python' );
 				group: 'Tests' with: #( 'PatternBuffer-Tests' );
 				group: 'Python-Tests' with: #( 'PatternBuffer-Python-Tests' );
-				group: 'RDF-Tests' with: #( 'PatternBuffer-RDF-Tests' ) ]
+				group: 'RDF-Tests' with: #( 'PatternBuffer-RDF-Tests' );
+				group: 'Full'
+				with:
+					#( 'default' 'Python' 'RDF' 'Tests' 'Python-Tests' 'RDF-Tests' ) ]
 ]
 
 { #category : 'dependencies' }
