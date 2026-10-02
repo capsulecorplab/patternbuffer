@@ -4,8 +4,8 @@ Class {
 	#instVars : [
 		'sparqlClient'
 	],
-	#category : 'PatternBuffer-Tests',
-	#package : 'PatternBuffer-Tests'
+	#category : 'PatternBuffer-RDF-Tests',
+	#package : 'PatternBuffer-RDF-Tests'
 }
 
 { #category : 'accessing' }
