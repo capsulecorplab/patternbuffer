@@ -17,11 +17,11 @@ BaselineOfPatternBuffer >> baseline: spec [
 			spec
 				package: 'PatternBuffer'
 				with: [ spec requires: #( 'ContainersArray2D' ) ];
-				package: 'PatternBuffer-Python'
-				with: [ spec postLoadDoIt: #postload:package: ];
-				package: 'PatternBuffer-RDF'
-				with: [
-					spec requires: #( 'PatternBuffer-Python' 'PatternBuffer' ) ];
+				package: 'PatternBuffer-Python';
+				package: 'PatternBuffer-RDF' with: [
+						spec
+							requires: #( 'PatternBuffer-Python' 'PatternBuffer' );
+							postLoadDoIt: #postload:package: ];
 				package: 'PatternBuffer-Tests'
 				with: [ spec requires: #( 'PatternBuffer-RDF' ) ].
 
