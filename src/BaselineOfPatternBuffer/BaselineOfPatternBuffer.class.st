@@ -25,6 +25,7 @@ BaselineOfPatternBuffer >> baseline: spec [
 
 			"Groups"
 			spec
+				group: 'default' with: #( 'PatternBuffer' );
 				group: 'RDF'
 				with: #( 'PatternBuffer-Python' 'PatternBuffer-RDF' );
 				group: 'Python' with: #( 'PatternBuffer-Python' );
