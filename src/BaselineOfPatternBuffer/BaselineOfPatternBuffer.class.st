@@ -14,7 +14,14 @@ BaselineOfPatternBuffer >> baseline: spec [
 			self containersArray2D: spec.
 
 			"Packages"
-			spec package: 'PatternBuffer' ].
+			spec
+				package: 'PatternBuffer';
+				package: 'PatternBuffer-Python'
+				with: [ spec requires: #( 'PatternBuffer' ) ];
+				package: 'PatternBuffer-RDF'
+				with: [ spec requires: #( 'PatternBuffer-Python' ) ];
+				package: 'PatternBuffer-Tests'
+				with: [ spec requires: #( 'PatternBuffer-RDF' ) ] ].
 
 	"Groups"
 	spec
