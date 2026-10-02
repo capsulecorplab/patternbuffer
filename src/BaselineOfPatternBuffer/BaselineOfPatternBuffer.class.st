@@ -17,7 +17,8 @@ BaselineOfPatternBuffer >> baseline: spec [
 			spec
 				package: 'PatternBuffer'
 				with: [ spec requires: #( 'ContainersArray2D' ) ];
-				package: 'PatternBuffer-Python';
+				package: 'PatternBuffer-Python'
+				with: [ spec postLoadDoIt: #postload:package: ];
 				package: 'PatternBuffer-RDF'
 				with: [
 					spec requires: #( 'PatternBuffer-Python' 'PatternBuffer' ) ];
@@ -41,4 +42,12 @@ BaselineOfPatternBuffer >> containersArray2D: spec [
 		spec
 			loads: #( 'Containers-Array2D' );
 			repository: 'github://pharo-containers/Containers-Array2D/src' ]
+]
+
+{ #category : 'actions' }
+BaselineOfPatternBuffer >> postload: loader package: packageSpec [
+
+	Transcript
+		show: 'Project loaded!';
+		cr
 ]
