@@ -14,9 +14,7 @@ BaselineOfPatternBuffer >> baseline: spec [
 			self containersArray2D: spec.
 
 			"Packages"
-			spec
-				package: 'PatternBuffer';
-				package: 'PatternBuffer-Tests' ].
+			spec package: 'PatternBuffer' ].
 
 	"Groups"
 	spec
