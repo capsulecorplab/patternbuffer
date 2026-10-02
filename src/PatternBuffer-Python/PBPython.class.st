@@ -10,8 +10,8 @@ Class {
 		'traceback',
 		'tracebacklog'
 	],
-	#category : 'PatternBuffer',
-	#package : 'PatternBuffer'
+	#category : 'PatternBuffer-Python',
+	#package : 'PatternBuffer-Python'
 }
 
 { #category : 'instance creation' }
