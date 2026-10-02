@@ -18,8 +18,8 @@ Class {
 	#instVars : [
 		'pythonScript'
 	],
-	#category : 'PatternBuffer',
-	#package : 'PatternBuffer'
+	#category : 'PatternBuffer-RDF',
+	#package : 'PatternBuffer-RDF'
 }
 
 { #category : 'accessing - query' }
