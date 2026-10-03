@@ -18,9 +18,21 @@ Class {
 	#instVars : [
 		'pythonScript'
 	],
-	#category : 'PatternBuffer',
-	#package : 'PatternBuffer'
+	#category : 'PatternBuffer-RDF',
+	#package : 'PatternBuffer-RDF'
 }
+
+{ #category : 'installing' }
+PBRDFLib class >> installRDFLib [
+	"install rdflib with pip via python-venv"
+
+	"initialize python as to ensure python venv already exists"
+	PBPython new.
+
+	"install rdflib via pip if not installed"
+	('*rdflib*' match: (LibC resultOfCommand: './venv/bin/pip freeze'))
+		ifFalse: [ LibC runCommand: './venv/bin/pip install rdflib' ]
+]
 
 { #category : 'accessing - query' }
 PBRDFLib >> datastore: aStringOrFileReference query: aString [
@@ -44,22 +56,23 @@ PBRDFLib >> datastore: aStringOrFileReference query: aString [
 
 { #category : 'initialization' }
 PBRDFLib >> initialize [
-	"install rdflib with pip via python-venv, if not already installed"
+	"verify rdflib is installed. if not, throw an error"
 
-	| requirementsTxt |
-	"initialize python as to ensure python venv already exists"
-	PBPython new.
+	| pip errorMsg |
+	super initialize.
 
-	"create file reference object for requirements.txt"
-	requirementsTxt := 'requirements.txt' asFileReference.
+	"create file reference object for pip"
+	pip := './venv/bin/pip' asFileReference.
 
-	"store contents of pip freeze to requirements.txt file"
-	LibC runCommand:
-		'./venv/bin/pip freeze > ' , requirementsTxt pathString.
+	"define error message"
+	errorMsg := 'RDFLib not installed. Please install with `PBRDFLib installRDFLib`'.
 
-	"install rdflib via pip if not installed"
-	('*rdflib*' match: requirementsTxt contents) ifFalse: [
-		LibC runCommand: './venv/bin/pip install rdflib' ]
+	"verify pip exists"
+	pip exists
+		ifTrue: [ "Check result of pip freeze for rdflib"
+				('*rdflib*' match: (LibC resultOfCommand: './venv/bin/pip freeze'))
+					ifFalse: [ self error: errorMsg ] ]
+		ifFalse: [ self error: errorMsg ]
 ]
 
 { #category : 'accessing' }

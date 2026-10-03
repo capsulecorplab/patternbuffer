@@ -1,8 +1,8 @@
 Class {
 	#name : 'PBPythonTest',
 	#superclass : 'TestCase',
-	#category : 'PatternBuffer-Tests',
-	#package : 'PatternBuffer-Tests'
+	#category : 'PatternBuffer-Python-Tests',
+	#package : 'PatternBuffer-Python-Tests'
 }
 
 { #category : 'tests' }
