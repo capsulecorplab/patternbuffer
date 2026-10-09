@@ -7,7 +7,6 @@ A Pharo/Smalltalk library for interacting with linked data models via contextual
 ### For Linux (Ubuntu 24.04 Recommended)
 
 - [Pharo](https://pharo.org/download) (13+ recommended)
-- python3-venv (used for installing RDFLIB)
 
 ## Loading instructions
 
