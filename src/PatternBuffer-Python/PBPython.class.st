@@ -1,5 +1,8 @@
 "
 I represent python bindings for executing python scripts via terminal
+
+## Requirements
+- python3-venv
 "
 Class {
 	#name : 'PBPython',
