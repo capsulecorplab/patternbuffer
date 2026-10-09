@@ -54,7 +54,7 @@ PBPython >> fromString: aPythonScriptAsString [
 	"read contents of stdout"
 	stdout := stdouttxt contents.
 
-	"read contents of traceback"
+	"read contents of script.py"
 	pythonScript := scriptpy contents.
 
 	"read contents of traceback"
