@@ -9,8 +9,8 @@ Class {
 		'rdfAsJSON',
 		'triplestore'
 	],
-	#category : 'PatternBuffer',
-	#package : 'PatternBuffer'
+	#category : 'PatternBuffer-RDF',
+	#package : 'PatternBuffer-RDF'
 }
 
 { #category : 'accessing' }

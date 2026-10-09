@@ -50,8 +50,8 @@ Class {
 		'data',
 		'rdfdata'
 	],
-	#category : 'PatternBuffer',
-	#package : 'PatternBuffer'
+	#category : 'PatternBuffer-RDF',
+	#package : 'PatternBuffer-RDF'
 }
 
 { #category : 'as yet unclassified' }

@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfPatternBuffer }
+Package { #name : 'BaselineOfPatternBuffer' }

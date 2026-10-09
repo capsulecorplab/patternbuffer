@@ -1,5 +1,8 @@
 "
 I represent python bindings for executing python scripts via terminal
+
+## Requirements
+- python3-venv
 "
 Class {
 	#name : 'PBPython',
@@ -10,8 +13,8 @@ Class {
 		'traceback',
 		'tracebacklog'
 	],
-	#category : 'PatternBuffer',
-	#package : 'PatternBuffer'
+	#category : 'PatternBuffer-Python',
+	#package : 'PatternBuffer-Python'
 }
 
 { #category : 'instance creation' }
@@ -54,7 +57,7 @@ PBPython >> fromString: aPythonScriptAsString [
 	"read contents of stdout"
 	stdout := stdouttxt contents.
 
-	"read contents of traceback"
+	"read contents of script.py"
 	pythonScript := scriptpy contents.
 
 	"read contents of traceback"
